@@ -12,6 +12,9 @@ on:
 permissions:
   contents: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -39,5 +42,6 @@ jobs:
             echo "README is already current."
           else
             git commit -m "chore: update profile readme"
+            git pull --rebase origin main
             git push
           fi
