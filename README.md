@@ -14,7 +14,7 @@
   <img alt="Language bytes" src="https://img.shields.io/static/v1?label=language+bytes&message=160.5+KB&color=22c55e&style=for-the-badge&labelColor=0b1020">
   <img alt="Stars" src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020">
   <img alt="Forks" src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020">
-  <img alt="Updated" src="https://img.shields.io/static/v1?label=auto+update&message=2026.04.29+22%3A22+UTC&color=22c55e&style=for-the-badge&labelColor=0b1020">
+  <img alt="Updated" src="https://img.shields.io/static/v1?label=auto+update&message=2026.04.29+22%3A24+UTC&color=22c55e&style=for-the-badge&labelColor=0b1020">
 </p>
 
 ## Language Matrix
@@ -121,4 +121,4 @@ scan     :: daily GitHub language bytes
 
 This profile README updates itself from GitHub Actions every day. The workflow scans public repository language bytes, detects languages that were not in the previous snapshot, rebuilds this page, and commits the refreshed README plus `assets/language-stats.json`.
 
-<sub>Last generated: 2026-04-29 22:22 UTC</sub>
+<sub>Last generated: 2026-04-29 22:24 UTC</sub>
