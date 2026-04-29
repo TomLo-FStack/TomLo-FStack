@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/TomLo-FStack?tab=repositories"><img alt="Repos" src="https://img.shields.io/badge/public_repos-4-0f172a?style=for-the-badge&labelColor=111827"></a>
+  <a href="https://github.com/TomLo-FStack?tab=repositories"><img alt="Repos" src="https://img.shields.io/badge/public_repos-5-0f172a?style=for-the-badge&labelColor=111827"></a>
   <img alt="Stars" src="https://img.shields.io/badge/stars-0-f59e0b?style=for-the-badge&labelColor=111827">
   <img alt="Forks" src="https://img.shields.io/badge/forks-0-38bdf8?style=for-the-badge&labelColor=111827">
   <img alt="Updated" src="https://img.shields.io/badge/auto_update-2026-04-29_21:51_UTC-22c55e?style=for-the-badge&labelColor=111827">
@@ -30,21 +30,29 @@ principle  :: small surface area, clear measurement, reproducible setup
 <table>
 <tr>
 <td width="50%" valign="top">
+<a href="https://github.com/TomLo-FStack/TomLo-FStack"><strong>TomLo-FStack</strong></a><br/>
+<span>Auto-updating GitHub profile README</span><br/><br/>
+<code>Python</code> &nbsp; stars <code>0</code> &nbsp; forks <code>0</code>
+</td>
+<td width="50%" valign="top">
 <a href="https://github.com/TomLo-FStack/ds50-speedforge"><strong>ds50-speedforge</strong></a><br/>
 <span>DS50 Speedforge: V vs Go benchmark across 50 data-structure workloads</span><br/><br/>
 <code>V</code> &nbsp; stars <code>0</code> &nbsp; forks <code>0</code>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="https://github.com/TomLo-FStack/come-ds-cli-challenge"><strong>come-ds-cli-challenge</strong></a><br/>
 <span>A 50-level data-structure CLI challenge built with Come</span><br/><br/>
 <code>Mixed</code> &nbsp; stars <code>0</code> &nbsp; forks <code>0</code>
 </td>
+<td width="50%"></td>
 </tr>
 </table>
 
 ## Language Signal
 
-`Mixed` 50% &nbsp; `V` 25% &nbsp; `C++` 25%
+`Mixed` 40% &nbsp; `Python` 20% &nbsp; `V` 20% &nbsp; `C++` 20%
 
 ## Live Telemetry
 
@@ -63,6 +71,7 @@ principle  :: small surface area, clear measurement, reproducible setup
 
 ## Latest Public Pushes
 
+- [TomLo-FStack](https://github.com/TomLo-FStack/TomLo-FStack) - Auto-updating GitHub profile README | `Python` | stars `0` | forks `0` | pushed `2026-04-29`
 - [ds50-speedforge](https://github.com/TomLo-FStack/ds50-speedforge) - DS50 Speedforge: V vs Go benchmark across 50 data-structure workloads | `V` | stars `0` | forks `0` | pushed `2026-04-29`
 - [come-ds-cli-challenge](https://github.com/TomLo-FStack/come-ds-cli-challenge) - A 50-level data-structure CLI challenge built with Come | `Mixed` | stars `0` | forks `0` | pushed `2026-04-29`
 - [come-lang](https://github.com/TomLo-FStack/come-lang) - Come (C Object and Module Extensions) is a systems programming language inspired by C. It preserves C’s mental model while removing common pitfalls. | `Mixed` | stars `0` | forks `0` | pushed `2026-04-29` fork
