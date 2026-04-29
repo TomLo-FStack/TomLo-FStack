@@ -4,8 +4,9 @@ import datetime as dt
 import html
 import json
 import os
+import urllib.error
 import urllib.request
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlencode
@@ -14,16 +15,26 @@ from urllib.parse import urlencode
 USERNAME = os.environ.get("GITHUB_USERNAME", "TomLo-FStack")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 ROOT = Path(__file__).resolve().parents[1]
+ASSETS = ROOT / "assets"
+SNAPSHOT_PATH = ASSETS / "language-stats.json"
 PROFILE_REPO = USERNAME
-PREFERRED_REPOS = ["mojo-data-structures-50", "ds50-speedforge", "come-ds-cli-challenge"]
 
 LANGUAGE_COLORS = {
-    "Mojo": "ff4f2e",
-    "V": "5d87bf",
     "C": "555555",
     "C++": "f34b7d",
+    "CSS": "563d7c",
+    "Dockerfile": "384d54",
     "Elixir": "6e4a7e",
+    "Go": "00add8",
+    "HTML": "e34c26",
+    "JavaScript": "f1e05a",
+    "Julia": "a270ba",
+    "Mojo": "ff4f2e",
+    "PowerShell": "012456",
     "Python": "3776ab",
+    "Shell": "89e051",
+    "TypeScript": "3178c6",
+    "V": "5d87bf",
     "Mixed": "64748b",
 }
 
@@ -65,13 +76,16 @@ def text(value: Any, fallback: str = "") -> str:
     return value if value else fallback
 
 
-def language_name(repo: dict[str, Any]) -> str:
-    language = repo.get("language")
-    return text(language, "Mixed")
-
-
 def escape(value: Any) -> str:
     return html.escape(text(value), quote=True)
+
+
+def language_name(repo: dict[str, Any]) -> str:
+    return text(repo.get("language"), "Mixed")
+
+
+def language_color(language: str) -> str:
+    return LANGUAGE_COLORS.get(language, "64748b")
 
 
 def badge(label: str, message: str, color: str = "0f172a") -> str:
@@ -94,10 +108,95 @@ def shorten(value: Any, limit: int) -> str:
     return content[: max(0, limit - 3)].rstrip() + "..."
 
 
-def ordered_projects(repos: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    preferred = [repo for name in PREFERRED_REPOS for repo in repos if repo["name"] == name]
-    rest = [repo for repo in repos if repo["name"] not in PREFERRED_REPOS]
-    return preferred + rest
+def format_bytes(value: int) -> str:
+    units = ["B", "KB", "MB", "GB"]
+    size = float(value)
+    for unit in units:
+        if size < 1024 or unit == units[-1]:
+            return f"{size:.1f} {unit}" if unit != "B" else f"{int(size)} B"
+        size /= 1024
+    return f"{value} B"
+
+
+def load_language_snapshot() -> dict[str, Any]:
+    if not SNAPSHOT_PATH.exists():
+        return {}
+    try:
+        return json.loads(SNAPSHOT_PATH.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+
+
+def previous_language_names(snapshot: dict[str, Any]) -> set[str]:
+    languages = snapshot.get("languages", [])
+    if not isinstance(languages, list):
+        return set()
+    return {text(item.get("name")) for item in languages if isinstance(item, dict) and text(item.get("name"))}
+
+
+def repo_language_bytes(repo: dict[str, Any]) -> dict[str, int]:
+    try:
+        data = github_json(repo["languages_url"])
+    except (KeyError, urllib.error.URLError, TimeoutError):
+        data = {}
+
+    if isinstance(data, dict) and data:
+        return {str(language): int(size) for language, size in data.items() if int(size) > 0}
+
+    language = language_name(repo)
+    return {language: 1} if language != "Mixed" else {}
+
+
+def collect_language_stats(
+    repos: list[dict[str, Any]],
+    previous_snapshot: dict[str, Any],
+    generated_at: str,
+) -> dict[str, Any]:
+    bytes_by_language: Counter[str] = Counter()
+    repos_by_language: dict[str, set[str]] = defaultdict(set)
+
+    for repo in repos:
+        languages = repo_language_bytes(repo)
+        for language, byte_count in languages.items():
+            bytes_by_language[language] += byte_count
+            repos_by_language[language].add(repo["name"])
+
+    total_bytes = sum(bytes_by_language.values())
+    rows: list[dict[str, Any]] = []
+    for language, byte_count in bytes_by_language.most_common():
+        percent = round(byte_count * 100 / total_bytes, 1) if total_bytes else 0
+        rows.append(
+            {
+                "name": language,
+                "bytes": byte_count,
+                "percent": percent,
+                "repos": sorted(repos_by_language[language]),
+                "color": language_color(language),
+            }
+        )
+
+    previous = previous_language_names(previous_snapshot)
+    current = {row["name"] for row in rows}
+    baseline = not previous
+    new_languages = sorted(current if baseline else current - previous)
+
+    return {
+        "generated_at": generated_at,
+        "repo_count": len(repos),
+        "total_bytes": total_bytes,
+        "baseline": baseline,
+        "new_languages": new_languages,
+        "languages": rows,
+    }
+
+
+def write_language_snapshot(stats: dict[str, Any]) -> None:
+    ASSETS.mkdir(exist_ok=True)
+    SNAPSHOT_PATH.write_text(
+        json.dumps(stats, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
 
 
 def repo_line(repo: dict[str, Any]) -> str:
@@ -122,7 +221,6 @@ def repo_card(repo: dict[str, Any], width: str = "50%") -> str:
     url = escape(repo["html_url"])
     desc = escape(text(repo.get("description"), "No description yet."))
     language = language_name(repo)
-    color = LANGUAGE_COLORS.get(language, "64748b")
     stars = repo.get("stargazers_count", 0)
     forks = repo.get("forks_count", 0)
     pushed = text(repo.get("pushed_at"), "")[:10] or "unknown"
@@ -131,7 +229,7 @@ def repo_card(repo: dict[str, Any], width: str = "50%") -> str:
         f"<td width=\"{width}\" valign=\"top\">\n"
         f"<a href=\"{url}\"><strong>{name}</strong></a><br/>\n"
         f"<span>{desc}</span><br/><br/>\n"
-        f"<img src=\"{badge('lang', language, color)}\" alt=\"{language}\" /> "
+        f"<img src=\"{badge('lang', language, language_color(language))}\" alt=\"{language}\" /> "
         f"<img src=\"{badge('stars', str(stars), 'f59e0b')}\" alt=\"stars {stars}\" /> "
         f"<img src=\"{badge('forks', str(forks), '38bdf8')}\" alt=\"forks {forks}\" /><br/>\n"
         f"<sub>last push: <code>{pushed}</code>{fork_badge}</sub>\n"
@@ -139,31 +237,10 @@ def repo_card(repo: dict[str, Any], width: str = "50%") -> str:
     )
 
 
-def spotlight(repos: list[dict[str, Any]]) -> str:
-    if not repos:
-        return ""
+def project_table(repos: list[dict[str, Any]]) -> str:
+    featured = [repo for repo in repos if not repo.get("fork")][:6] or repos[:6]
 
-    primary = ordered_projects(repos)[0]
-    return (
-        "<table>\n<tr>\n"
-        f"{repo_card(primary, '100%')}\n"
-        "</tr>\n</table>"
-    )
-
-
-def project_table(repos: list[dict[str, Any]], skip_spotlight: bool = False) -> str:
-    ordered = ordered_projects(repos)
-    featured = [repo for repo in ordered if not repo.get("fork")]
-    if skip_spotlight and len(featured) > 1:
-        featured = featured[1:]
-    featured = featured[:6]
-    if not featured:
-        featured = ordered[:6]
-
-    cells: list[str] = []
-    for repo in featured:
-        cells.append(repo_card(repo))
-
+    cells = [repo_card(repo) for repo in featured]
     rows: list[str] = []
     for i in range(0, len(cells), 2):
         left = cells[i]
@@ -172,48 +249,83 @@ def project_table(repos: list[dict[str, Any]], skip_spotlight: bool = False) -> 
     return "<table>\n" + "\n".join(rows) + "\n</table>"
 
 
-def language_bar(counter: Counter[str]) -> str:
-    if not counter:
+def language_badges(stats: dict[str, Any], limit: int = 8) -> str:
+    languages = stats.get("languages", [])[:limit]
+    if not languages:
+        return "`No language data yet.`"
+    return "\n".join(
+        f"<img src=\"{badge(row['name'], f'{row['percent']:.1f}%', row['color'])}\" "
+        f"alt=\"{escape(row['name'])} {row['percent']:.1f}%\" />"
+        for row in languages
+    )
+
+
+def language_matrix(stats: dict[str, Any], limit: int = 8) -> str:
+    languages = stats.get("languages", [])[:limit]
+    if not languages:
         return "`No language data yet.`"
 
-    total = sum(counter.values())
-    parts: list[str] = []
-    for language, count in counter.most_common(8):
-        pct = round(count * 100 / total)
-        color = LANGUAGE_COLORS.get(language, "64748b")
-        parts.append(f"<img src=\"{badge(language, str(pct) + '%', color)}\" alt=\"{language} {pct}%\" />")
-    return "\n".join(parts)
+    rows = []
+    for row in languages:
+        repos = ", ".join(row["repos"][:4])
+        if len(row["repos"]) > 4:
+            repos += f", +{len(row['repos']) - 4}"
+        rows.append(
+            "| "
+            f"`{escape(row['name'])}` "
+            f"| `{row['percent']:.1f}%` "
+            f"| `{format_bytes(row['bytes'])}` "
+            f"| {escape(repos)} |"
+        )
 
-
-def stack_badges() -> str:
-    stack = [
-        ("Mojo", "ff4f2e"),
-        ("V", "5d87bf"),
-        ("C", "555555"),
-        ("C++", "f34b7d"),
-        ("Elixir", "6e4a7e"),
-        ("Python", "3776ab"),
-        ("WSL2", "2563eb"),
-        ("GitHub Actions", "2088ff"),
-    ]
-    return "\n".join(f"<img src=\"{badge('stack', name, color)}\" alt=\"{name}\" />" for name, color in stack)
-
-
-def write_hero_svg(source_repos: list[dict[str, Any]], languages: Counter[str], updated: str) -> None:
-    assets = ROOT / "assets"
-    assets.mkdir(exist_ok=True)
-
-    top_language = languages.most_common(1)[0][0] if languages else "Systems"
-    lead_repo = next(
-        (repo for repo in source_repos if repo["name"] == "mojo-data-structures-50"),
-        source_repos[0] if source_repos else {},
+    return "\n".join(
+        [
+            "| Language | Share | Bytes | Seen in repos |",
+            "| --- | ---: | ---: | --- |",
+            *rows,
+        ]
     )
-    lead_name = escape(text(lead_repo.get("name"), "mojo-data-structures-50"))
-    lead_desc = escape(shorten(lead_repo.get("description"), 78) or "Mojo-first data-structure systems workbench.")
-    repo_count = str(len(source_repos))
-    lang_count = str(len(languages))
 
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="390" viewBox="0 0 1280 390" role="img" aria-label="Tom Lo systems forge banner">
+
+def new_language_line(stats: dict[str, Any]) -> str:
+    new_languages = stats.get("new_languages", [])
+    if stats.get("baseline"):
+        label = "Baseline scan"
+    elif new_languages:
+        label = "New since last daily scan"
+    else:
+        return "No new languages since the last daily scan."
+
+    items = " ".join(
+        f"<img src=\"{badge('new', language, language_color(language))}\" alt=\"new {escape(language)}\" />"
+        for language in new_languages[:8]
+    )
+    if len(new_languages) > 8:
+        items += f" <sub>+{len(new_languages) - 8} more</sub>"
+    return f"{label}: {items}"
+
+
+def stack_badges(stats: dict[str, Any]) -> str:
+    languages = [(row["name"], row["color"]) for row in stats.get("languages", [])[:8]]
+    tools = [("WSL2", "2563eb"), ("GitHub Actions", "2088ff")]
+    return "\n".join(
+        f"<img src=\"{badge('stack', name, color)}\" alt=\"{escape(name)}\" />"
+        for name, color in [*languages, *tools]
+    )
+
+
+def write_hero_svg(stats: dict[str, Any], updated: str) -> None:
+    ASSETS.mkdir(exist_ok=True)
+    languages = stats.get("languages", [])
+    top = languages[0] if languages else {"name": "Systems", "percent": 0, "color": "22d3ee"}
+    second = languages[1] if len(languages) > 1 else top
+    third = languages[2] if len(languages) > 2 else second
+    lang_count = str(len(languages))
+    repo_count = str(stats.get("repo_count", 0))
+    byte_total = format_bytes(int(stats.get("total_bytes", 0)))
+    top_line = " / ".join(row["name"].upper() for row in languages[:4]) or "SYSTEMS"
+
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="390" viewBox="0 0 1280 390" role="img" aria-label="Tom Lo polyglot systems data scientist banner">
   <defs>
     <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0" stop-color="#04060d"/>
@@ -258,59 +370,59 @@ def write_hero_svg(source_repos: list[dict[str, Any]], languages: Counter[str], 
   </g>
 
   <g transform="translate(64 68)">
-    <text x="0" y="0" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="20" font-weight="800" letter-spacing="4">TOM LO / SYSTEMS FORGE</text>
-    <text x="-4" y="72" fill="#22d3ee" opacity="0.55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">MOJO DATA</text>
-    <text x="4" y="72" fill="#ff2d95" opacity="0.55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">MOJO DATA</text>
-    <text x="0" y="72" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">MOJO DATA</text>
-    <text x="-4" y="136" fill="#22d3ee" opacity="0.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">STRUCTURES 50</text>
-    <text x="4" y="136" fill="#ff2d95" opacity="0.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">STRUCTURES 50</text>
-    <text x="0" y="136" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">STRUCTURES 50</text>
+    <text x="0" y="0" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="20" font-weight="800" letter-spacing="4">TOM LO / SYSTEMS DATA SCIENCE</text>
+    <text x="-4" y="72" fill="#22d3ee" opacity="0.55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">POLYGLOT</text>
+    <text x="4" y="72" fill="#ff2d95" opacity="0.55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">POLYGLOT</text>
+    <text x="0" y="72" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">POLYGLOT</text>
+    <text x="-4" y="136" fill="#22d3ee" opacity="0.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="56" font-weight="900">SYSTEMS SCIENTIST</text>
+    <text x="4" y="136" fill="#ff2d95" opacity="0.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="56" font-weight="900">SYSTEMS SCIENTIST</text>
+    <text x="0" y="136" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="56" font-weight="900">SYSTEMS SCIENTIST</text>
     <rect x="0" y="162" width="690" height="4" fill="url(#hot)" filter="url(#glow)"/>
-    <text x="0" y="204" fill="#e2e8f0" font-family="JetBrains Mono, Consolas, monospace" font-size="21">lead target :: {lead_name}</text>
-    <text x="0" y="236" fill="#94a3b8" font-family="JetBrains Mono, Consolas, monospace" font-size="17">{lead_desc}</text>
+    <text x="0" y="204" fill="#e2e8f0" font-family="JetBrains Mono, Consolas, monospace" font-size="21">tracked stack :: {escape(top_line)}</text>
+    <text x="0" y="236" fill="#94a3b8" font-family="JetBrains Mono, Consolas, monospace" font-size="17">systems-level data + computer science across public projects</text>
   </g>
 
   <g transform="translate(810 122)">
     <rect x="0" y="0" width="380" height="145" rx="0" fill="#080d1a" stroke="#22d3ee" stroke-width="2"/>
     <path d="M0 0H118L154 34H380" fill="none" stroke="#facc15" stroke-width="4"/>
     <rect x="24" y="70" width="332" height="1" fill="#22304e"/>
-    <text x="28" y="44" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">RUNTIME HUD</text>
-    <text x="222" y="44" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="13">{escape(top_language).upper()}</text>
-    <text x="28" y="98" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">repos      {repo_count}</text>
+    <text x="28" y="44" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">RESEARCH HUD</text>
+    <text x="222" y="44" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="13">{escape(top['name']).upper()} {top['percent']:.1f}%</text>
+    <text x="28" y="98" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">scanned    {repo_count}</text>
     <text x="28" y="128" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">languages  {lang_count}</text>
   </g>
 
   <g transform="translate(64 318)">
-    <rect x="0" y="-24" width="214" height="40" fill="#05070d" stroke="#facc15" stroke-width="2"/>
-    <rect x="232" y="-24" width="238" height="40" fill="#05070d" stroke="#22d3ee" stroke-width="2"/>
-    <rect x="488" y="-24" width="154" height="40" fill="#05070d" stroke="#ff2d95" stroke-width="2"/>
-    <text x="18" y="2" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">CORRECTNESS FIRST</text>
-    <text x="250" y="2" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">BENCHMARKS SECOND</text>
-    <text x="514" y="2" fill="#ff2d95" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">SHIP CLEAN</text>
+    <rect x="0" y="-24" width="202" height="40" fill="#05070d" stroke="#facc15" stroke-width="2"/>
+    <rect x="220" y="-24" width="212" height="40" fill="#05070d" stroke="#22d3ee" stroke-width="2"/>
+    <rect x="450" y="-24" width="212" height="40" fill="#05070d" stroke="#ff2d95" stroke-width="2"/>
+    <text x="18" y="2" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">{escape(top['name']).upper()} {top['percent']:.1f}%</text>
+    <text x="238" y="2" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">{escape(second['name']).upper()} {second['percent']:.1f}%</text>
+    <text x="468" y="2" fill="#ff2d95" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">{escape(third['name']).upper()} {third['percent']:.1f}%</text>
   </g>
 
-  <text x="1216" y="346" fill="#f8fafc" opacity="0.62" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="13">AUTO {escape(updated)}</text>
+  <text x="1216" y="346" fill="#f8fafc" opacity="0.62" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="13">BYTES {escape(byte_total)} / AUTO {escape(updated)}</text>
 </svg>
 """
-    (assets / "neon-forge.svg").write_text(svg, encoding="utf-8", newline="\n")
+    (ASSETS / "neon-forge.svg").write_text(svg, encoding="utf-8", newline="\n")
 
 
 def write_signal_svg(
-    source_repos: list[dict[str, Any]],
-    languages: Counter[str],
+    stats: dict[str, Any],
     active_count: int,
     total_stars: int,
     total_forks: int,
     updated: str,
 ) -> None:
-    assets = ROOT / "assets"
-    assets.mkdir(exist_ok=True)
-
-    top_language = languages.most_common(1)[0][0] if languages else "Systems"
-    repo_count = str(len(source_repos))
+    ASSETS.mkdir(exist_ok=True)
+    languages = stats.get("languages", [])
+    top_language = languages[0]["name"] if languages else "Systems"
+    top_percent = languages[0]["percent"] if languages else 0
+    new_count = len(stats.get("new_languages", []))
+    repo_count = str(stats.get("repo_count", 0))
     updated_label = escape(updated.replace(" UTC", "Z"))
 
-    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="92" viewBox="0 0 1280 92" role="img" aria-label="Tom Lo live build signal">
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="92" viewBox="0 0 1280 92" role="img" aria-label="Tom Lo language telemetry strip">
   <defs>
     <linearGradient id="rail" x1="0" x2="1">
       <stop offset="0" stop-color="#facc15"/>
@@ -330,95 +442,102 @@ def write_signal_svg(
   <rect x="18" y="12" width="1244" height="3" fill="url(#rail)" filter="url(#soft)"/>
   <path d="M36 80H312L346 46H462" fill="none" stroke="#facc15" stroke-width="2"/>
   <path d="M1046 12H1262V80H1002Z" fill="#ff2d95" opacity="0.2"/>
-  <text x="46" y="43" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">Tom Lo // systems workbench</text>
-  <text x="46" y="66" fill="#94a3b8" font-family="JetBrains Mono, Consolas, monospace" font-size="15">Mojo data structures, language experiments, benchmark tooling</text>
+  <text x="46" y="43" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">Tom Lo // polyglot systems/data scientist</text>
+  <text x="46" y="66" fill="#94a3b8" font-family="JetBrains Mono, Consolas, monospace" font-size="15">multi-disciplinary programmer, byte-weighted language telemetry</text>
 
   <g font-family="JetBrains Mono, Consolas, monospace" font-weight="800" font-size="13">
-    <text x="690" y="38" fill="#facc15">PROJECTS</text>
+    <text x="690" y="38" fill="#facc15">SCANNED</text>
     <text x="690" y="62" fill="#f8fafc">{repo_count}</text>
     <text x="800" y="38" fill="#22d3ee">ACTIVE</text>
     <text x="800" y="62" fill="#f8fafc">{active_count}</text>
-    <text x="900" y="38" fill="#ff2d95">LANG</text>
-    <text x="900" y="62" fill="#f8fafc">{escape(top_language).upper()}</text>
-    <text x="1018" y="38" fill="#facc15">STARS</text>
-    <text x="1018" y="62" fill="#f8fafc">{total_stars}</text>
-    <text x="1110" y="38" fill="#22d3ee">FORKS</text>
-    <text x="1110" y="62" fill="#f8fafc">{total_forks}</text>
-    <text x="1198" y="38" fill="#ff2d95" text-anchor="end">AUTO</text>
-    <text x="1198" y="62" fill="#f8fafc" text-anchor="end">{updated_label}</text>
+    <text x="900" y="38" fill="#ff2d95">TOP</text>
+    <text x="900" y="62" fill="#f8fafc">{escape(top_language).upper()} {top_percent:.1f}%</text>
+    <text x="1034" y="38" fill="#facc15">NEW</text>
+    <text x="1034" y="62" fill="#f8fafc">{new_count}</text>
+    <text x="1100" y="38" fill="#22d3ee">STARS</text>
+    <text x="1100" y="62" fill="#f8fafc">{total_stars}</text>
+    <text x="1164" y="38" fill="#ff2d95">FORKS</text>
+    <text x="1164" y="62" fill="#f8fafc">{total_forks}</text>
+    <text x="1236" y="38" fill="#facc15" text-anchor="end">AUTO</text>
+    <text x="1236" y="62" fill="#f8fafc" text-anchor="end">{updated_label}</text>
   </g>
 </svg>
 """
-    (assets / "signal-strip.svg").write_text(svg, encoding="utf-8", newline="\n")
+    (ASSETS / "signal-strip.svg").write_text(svg, encoding="utf-8", newline="\n")
 
 
 def render(repos: list[dict[str, Any]], user: dict[str, Any]) -> str:
     public = [repo for repo in repos if not repo.get("private")]
     project_repos = [repo for repo in public if repo["name"] != PROFILE_REPO]
     source_repos = project_repos or public or repos
+    stats_repos = [repo for repo in source_repos if not repo.get("fork")] or source_repos
     non_fork_projects = [repo for repo in source_repos if not repo.get("fork")]
-    languages = Counter(language_name(repo) for repo in source_repos)
     total_stars = sum(repo.get("stargazers_count", 0) for repo in source_repos)
     total_forks = sum(repo.get("forks_count", 0) for repo in source_repos)
+
     now = dt.datetime.now(dt.UTC)
     updated = now.strftime("%Y-%m-%d %H:%M UTC")
     badge_updated = now.strftime("%Y.%m.%d %H:%M UTC")
-    write_hero_svg(source_repos, languages, updated)
-    write_signal_svg(source_repos, languages, len(non_fork_projects), total_stars, total_forks, updated)
-    bio = text(user.get("bio"), "Systems builder focused on data structures, language experiments, and fast tooling.")
+    previous_snapshot = load_language_snapshot()
+    stats = collect_language_stats(stats_repos, previous_snapshot, updated)
+    write_language_snapshot(stats)
+    write_hero_svg(stats, updated)
+    write_signal_svg(stats, len(non_fork_projects), total_stars, total_forks, updated)
 
-    recent = "\n".join(repo_line(repo) for repo in source_repos[:8])
-    if not recent:
-        recent = "- Building in public soon."
+    bio = text(user.get("bio"), "Systems builder focused on data structures, language experiments, and fast tooling.")
+    recent = "\n".join(repo_line(repo) for repo in source_repos[:8]) or "- Building in public soon."
 
     return f"""<!-- AUTO-GENERATED by scripts/build_readme.py. Edit the script, not this file. -->
 
 <p align="center">
-  <img width="100%" src="./assets/neon-forge.svg" alt="Tom Lo systems forge banner" />
+  <img width="100%" src="./assets/neon-forge.svg" alt="Tom Lo polyglot systems data scientist banner" />
 </p>
 
 <p align="center">
-  <img width="100%" src="./assets/signal-strip.svg" alt="Tom Lo live build signal" />
+  <img width="100%" src="./assets/signal-strip.svg" alt="Tom Lo language telemetry strip" />
 </p>
 
 <p align="center">
-  <a href="https://github.com/{USERNAME}?tab=repositories"><img alt="Projects" src="{badge('projects', str(len(source_repos)), '0f172a')}"></a>
-  <img alt="Active builds" src="{badge('active builds', str(len(non_fork_projects)), '7c3aed')}">
+  <a href="https://github.com/{USERNAME}?tab=repositories"><img alt="Tracked repos" src="{badge('tracked repos', str(stats.get('repo_count', 0)), '0f172a')}"></a>
+  <img alt="Tracked languages" src="{badge('tracked languages', str(len(stats.get('languages', []))), '7c3aed')}">
+  <img alt="Language bytes" src="{badge('language bytes', format_bytes(int(stats.get('total_bytes', 0))), '22c55e')}">
   <img alt="Stars" src="{badge('stars', str(total_stars), 'f59e0b')}">
   <img alt="Forks" src="{badge('forks', str(total_forks), '38bdf8')}">
   <img alt="Updated" src="{badge('auto update', badge_updated, '22c55e')}">
 </p>
 
-## Main Signal
+## Language Matrix
 
-{spotlight(source_repos)}
+**Positioning:** polyglot systems-level data/computer scientist and multidisciplinary programmer. This page tracks the languages actually present in my primary public source projects by repository language bytes, not by a hand-written stack list.
+
+<p align="center">
+{language_badges(stats)}
+</p>
+
+{new_language_line(stats)}
+
+{language_matrix(stats)}
 
 ## Mission Control
 
 {bio}
 
-I like projects where correctness and speed can both be inspected: data-structure workloads, language runtimes, CLI drills, and benchmark harnesses.
+I work at the intersection of systems programming, data structures, computational thinking, and applied tooling. The goal is to inspect the same ideas through multiple language ecosystems, then compare correctness, ergonomics, and runtime behavior.
 
 ```text
-vector :: Mojo DS50 + speed drills
-style  :: compact APIs + smoke tests
-mode   :: measure, clean, ship
+identity :: polyglot systems-level data/computer scientist
+scope    :: data structures, runtimes, CLI tools, benchmarks
+scan     :: daily GitHub language bytes
 ```
 
 ## Project Radar
 
-{project_table(source_repos, skip_spotlight=True)}
+{project_table(source_repos)}
 
 ## Toolchain
 
 <p align="center">
-{stack_badges()}
-</p>
-
-## Language Signal
-
-<p align="center">
-{language_bar(languages)}
+{stack_badges(stats)}
 </p>
 
 ## Live Telemetry
@@ -442,7 +561,7 @@ mode   :: measure, clean, ship
 
 ## Automation
 
-This profile README updates itself from GitHub Actions. The workflow reads public repository metadata, rebuilds this page, and commits the diff when anything changes.
+This profile README updates itself from GitHub Actions every day. The workflow scans public repository language bytes, detects languages that were not in the previous snapshot, rebuilds this page, and commits the refreshed README plus `assets/language-stats.json`.
 
 <sub>Last generated: {updated}</sub>
 """

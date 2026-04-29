@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-04-29 22:22 UTC",
+  "repo_count": 3,
+  "total_bytes": 164378,
+  "baseline": false,
+  "new_languages": [],
+  "languages": [
+    {
+      "name": "Mojo",
+      "bytes": 53221,
+      "percent": 32.4,
+      "repos": [
+        "mojo-data-structures-50"
+      ],
+      "color": "ff4f2e"
+    },
+    {
+      "name": "V",
+      "bytes": 33562,
+      "percent": 20.4,
+      "repos": [
+        "ds50-speedforge"
+      ],
+      "color": "5d87bf"
+    },
+    {
+      "name": "Go",
+      "bytes": 31472,
+      "percent": 19.1,
+      "repos": [
+        "ds50-speedforge"
+      ],
+      "color": "00add8"
+    },
+    {
+      "name": "PowerShell",
+      "bytes": 18503,
+      "percent": 11.3,
+      "repos": [
+        "ds50-speedforge",
+        "mojo-data-structures-50"
+      ],
+      "color": "012456"
+    },
+    {
+      "name": "Python",
+      "bytes": 16296,
+      "percent": 9.9,
+      "repos": [
+        "ds50-speedforge"
+      ],
+      "color": "3776ab"
+    },
+    {
+      "name": "Julia",
+      "bytes": 11324,
+      "percent": 6.9,
+      "repos": [
+        "ds50-speedforge"
+      ],
+      "color": "a270ba"
+    }
+  ]
+}

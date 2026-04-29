@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="390" viewBox="0 0 1280 390" role="img" aria-label="Tom Lo systems forge banner">
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="390" viewBox="0 0 1280 390" role="img" aria-label="Tom Lo polyglot systems data scientist banner">
   <defs>
     <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0" stop-color="#04060d"/>
@@ -43,36 +43,36 @@
   </g>
 
   <g transform="translate(64 68)">
-    <text x="0" y="0" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="20" font-weight="800" letter-spacing="4">TOM LO / SYSTEMS FORGE</text>
-    <text x="-4" y="72" fill="#22d3ee" opacity="0.55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">MOJO DATA</text>
-    <text x="4" y="72" fill="#ff2d95" opacity="0.55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">MOJO DATA</text>
-    <text x="0" y="72" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">MOJO DATA</text>
-    <text x="-4" y="136" fill="#22d3ee" opacity="0.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">STRUCTURES 50</text>
-    <text x="4" y="136" fill="#ff2d95" opacity="0.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">STRUCTURES 50</text>
-    <text x="0" y="136" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">STRUCTURES 50</text>
+    <text x="0" y="0" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="20" font-weight="800" letter-spacing="4">TOM LO / SYSTEMS DATA SCIENCE</text>
+    <text x="-4" y="72" fill="#22d3ee" opacity="0.55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">POLYGLOT</text>
+    <text x="4" y="72" fill="#ff2d95" opacity="0.55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">POLYGLOT</text>
+    <text x="0" y="72" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">POLYGLOT</text>
+    <text x="-4" y="136" fill="#22d3ee" opacity="0.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="56" font-weight="900">SYSTEMS SCIENTIST</text>
+    <text x="4" y="136" fill="#ff2d95" opacity="0.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="56" font-weight="900">SYSTEMS SCIENTIST</text>
+    <text x="0" y="136" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="56" font-weight="900">SYSTEMS SCIENTIST</text>
     <rect x="0" y="162" width="690" height="4" fill="url(#hot)" filter="url(#glow)"/>
-    <text x="0" y="204" fill="#e2e8f0" font-family="JetBrains Mono, Consolas, monospace" font-size="21">lead target :: mojo-data-structures-50</text>
-    <text x="0" y="236" fill="#94a3b8" font-family="JetBrains Mono, Consolas, monospace" font-size="17">Mojo implementations for 50 classic data-structure LeetCode problems.</text>
+    <text x="0" y="204" fill="#e2e8f0" font-family="JetBrains Mono, Consolas, monospace" font-size="21">tracked stack :: MOJO / V / GO / POWERSHELL</text>
+    <text x="0" y="236" fill="#94a3b8" font-family="JetBrains Mono, Consolas, monospace" font-size="17">systems-level data + computer science across public projects</text>
   </g>
 
   <g transform="translate(810 122)">
     <rect x="0" y="0" width="380" height="145" rx="0" fill="#080d1a" stroke="#22d3ee" stroke-width="2"/>
     <path d="M0 0H118L154 34H380" fill="none" stroke="#facc15" stroke-width="4"/>
     <rect x="24" y="70" width="332" height="1" fill="#22304e"/>
-    <text x="28" y="44" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">RUNTIME HUD</text>
-    <text x="222" y="44" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="13">MIXED</text>
-    <text x="28" y="98" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">repos      5</text>
-    <text x="28" y="128" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">languages  4</text>
+    <text x="28" y="44" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">RESEARCH HUD</text>
+    <text x="222" y="44" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="13">MOJO 32.4%</text>
+    <text x="28" y="98" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">scanned    3</text>
+    <text x="28" y="128" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">languages  6</text>
   </g>
 
   <g transform="translate(64 318)">
-    <rect x="0" y="-24" width="214" height="40" fill="#05070d" stroke="#facc15" stroke-width="2"/>
-    <rect x="232" y="-24" width="238" height="40" fill="#05070d" stroke="#22d3ee" stroke-width="2"/>
-    <rect x="488" y="-24" width="154" height="40" fill="#05070d" stroke="#ff2d95" stroke-width="2"/>
-    <text x="18" y="2" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">CORRECTNESS FIRST</text>
-    <text x="250" y="2" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">BENCHMARKS SECOND</text>
-    <text x="514" y="2" fill="#ff2d95" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">SHIP CLEAN</text>
+    <rect x="0" y="-24" width="202" height="40" fill="#05070d" stroke="#facc15" stroke-width="2"/>
+    <rect x="220" y="-24" width="212" height="40" fill="#05070d" stroke="#22d3ee" stroke-width="2"/>
+    <rect x="450" y="-24" width="212" height="40" fill="#05070d" stroke="#ff2d95" stroke-width="2"/>
+    <text x="18" y="2" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">MOJO 32.4%</text>
+    <text x="238" y="2" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">V 20.4%</text>
+    <text x="468" y="2" fill="#ff2d95" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">GO 19.1%</text>
   </g>
 
-  <text x="1216" y="346" fill="#f8fafc" opacity="0.62" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="13">AUTO 2026-04-29 22:12 UTC</text>
+  <text x="1216" y="346" fill="#f8fafc" opacity="0.62" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="13">BYTES 160.5 KB / AUTO 2026-04-29 22:22 UTC</text>
 </svg>
