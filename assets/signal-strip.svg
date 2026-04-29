@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="92" viewBox="0 0 1280 92" role="img" aria-label="Tom Lo live build signal">
+  <defs>
+    <linearGradient id="rail" x1="0" x2="1">
+      <stop offset="0" stop-color="#facc15"/>
+      <stop offset="0.5" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#ff2d95"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-30%" width="140%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1280" height="92" fill="#05070d"/>
+  <rect x="18" y="12" width="1244" height="68" fill="#080d1a" stroke="#22304e" stroke-width="2"/>
+  <rect x="18" y="12" width="1244" height="3" fill="url(#rail)" filter="url(#soft)"/>
+  <path d="M36 80H312L346 46H462" fill="none" stroke="#facc15" stroke-width="2"/>
+  <path d="M1046 12H1262V80H1002Z" fill="#ff2d95" opacity="0.2"/>
+  <text x="46" y="43" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800">Tom Lo // systems workbench</text>
+  <text x="46" y="66" fill="#94a3b8" font-family="JetBrains Mono, Consolas, monospace" font-size="15">Mojo data structures, language experiments, benchmark tooling</text>
+
+  <g font-family="JetBrains Mono, Consolas, monospace" font-weight="800" font-size="13">
+    <text x="690" y="38" fill="#facc15">PROJECTS</text>
+    <text x="690" y="62" fill="#f8fafc">5</text>
+    <text x="800" y="38" fill="#22d3ee">ACTIVE</text>
+    <text x="800" y="62" fill="#f8fafc">3</text>
+    <text x="900" y="38" fill="#ff2d95">LANG</text>
+    <text x="900" y="62" fill="#f8fafc">MIXED</text>
+    <text x="1018" y="38" fill="#facc15">STARS</text>
+    <text x="1018" y="62" fill="#f8fafc">0</text>
+    <text x="1110" y="38" fill="#22d3ee">FORKS</text>
+    <text x="1110" y="62" fill="#f8fafc">0</text>
+    <text x="1198" y="38" fill="#ff2d95" text-anchor="end">AUTO</text>
+    <text x="1198" y="62" fill="#f8fafc" text-anchor="end">2026-04-29 22:09Z</text>
+  </g>
+</svg>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="390" viewBox="0 0 1280 390" role="img" aria-label="Tom Lo systems forge banner">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#04060d"/>
+      <stop offset="0.48" stop-color="#0a1020"/>
+      <stop offset="1" stop-color="#1a0615"/>
+    </linearGradient>
+    <linearGradient id="hot" x1="0" x2="1">
+      <stop offset="0" stop-color="#facc15"/>
+      <stop offset="0.5" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#ff2d95"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#1f2a44" stroke-width="1" opacity="0.55"/>
+    </pattern>
+    <pattern id="scan" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 0H8" stroke="#ffffff" stroke-width="1" opacity="0.035"/>
+    </pattern>
+  </defs>
+
+  <rect width="1280" height="390" fill="url(#bg)"/>
+  <rect width="1280" height="390" fill="url(#grid)"/>
+  <rect width="1280" height="390" fill="url(#scan)"/>
+  <rect x="18" y="18" width="1244" height="354" fill="none" stroke="#22304e" stroke-width="2"/>
+  <path d="M18 58H226L258 90H402" fill="none" stroke="#facc15" stroke-width="3"/>
+  <path d="M862 18H1262V92H790Z" fill="#22d3ee" opacity="0.85"/>
+  <path d="M995 260H1262V372H920Z" fill="#ff2d95" opacity="0.86"/>
+  <path d="M18 292H360L440 372H18Z" fill="#facc15" opacity="0.96"/>
+  <path d="M0 132H216L162 188H0Z" fill="#ff2d95" opacity="0.38"/>
+  <path d="M486 0L604 0L247 390H128Z" fill="#111827" opacity="0.72"/>
+
+  <g opacity="0.75">
+    <path d="M742 50H838M742 74H808M742 98H858" stroke="#22d3ee" stroke-width="3"/>
+    <path d="M1110 116H1226M1086 140H1194M1138 164H1262" stroke="#ff2d95" stroke-width="3"/>
+    <path d="M620 300H740M650 324H800M690 348H770" stroke="#facc15" stroke-width="3"/>
+  </g>
+
+  <g transform="translate(64 68)">
+    <text x="0" y="0" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="20" font-weight="800" letter-spacing="4">TOM LO / SYSTEMS FORGE</text>
+    <text x="-4" y="72" fill="#22d3ee" opacity="0.55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">MOJO DATA</text>
+    <text x="4" y="72" fill="#ff2d95" opacity="0.55" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">MOJO DATA</text>
+    <text x="0" y="72" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">MOJO DATA</text>
+    <text x="-4" y="136" fill="#22d3ee" opacity="0.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">STRUCTURES 50</text>
+    <text x="4" y="136" fill="#ff2d95" opacity="0.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">STRUCTURES 50</text>
+    <text x="0" y="136" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="62" font-weight="900">STRUCTURES 50</text>
+    <rect x="0" y="162" width="690" height="4" fill="url(#hot)" filter="url(#glow)"/>
+    <text x="0" y="204" fill="#e2e8f0" font-family="JetBrains Mono, Consolas, monospace" font-size="21">lead target :: mojo-data-structures-50</text>
+    <text x="0" y="236" fill="#94a3b8" font-family="JetBrains Mono, Consolas, monospace" font-size="17">Mojo implementations for 50 classic data-structure LeetCode problems.</text>
+  </g>
+
+  <g transform="translate(810 122)">
+    <rect x="0" y="0" width="380" height="145" rx="0" fill="#080d1a" stroke="#22d3ee" stroke-width="2"/>
+    <path d="M0 0H118L154 34H380" fill="none" stroke="#facc15" stroke-width="4"/>
+    <rect x="24" y="70" width="332" height="1" fill="#22304e"/>
+    <text x="28" y="44" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">RUNTIME HUD</text>
+    <text x="222" y="44" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="13">MIXED</text>
+    <text x="28" y="98" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">repos      5</text>
+    <text x="28" y="128" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">languages  4</text>
+  </g>
+
+  <g transform="translate(64 318)">
+    <rect x="0" y="-24" width="214" height="40" fill="#05070d" stroke="#facc15" stroke-width="2"/>
+    <rect x="232" y="-24" width="238" height="40" fill="#05070d" stroke="#22d3ee" stroke-width="2"/>
+    <rect x="488" y="-24" width="154" height="40" fill="#05070d" stroke="#ff2d95" stroke-width="2"/>
+    <text x="18" y="2" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">CORRECTNESS FIRST</text>
+    <text x="250" y="2" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">BENCHMARKS SECOND</text>
+    <text x="514" y="2" fill="#ff2d95" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">SHIP CLEAN</text>
+  </g>
+
+  <text x="1216" y="346" fill="#f8fafc" opacity="0.62" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="13">AUTO 2026-04-29 22:09 UTC</text>
+</svg>
