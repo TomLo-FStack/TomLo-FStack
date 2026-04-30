@@ -4,6 +4,7 @@ import datetime as dt
 import html
 import json
 import os
+import re
 import urllib.error
 import urllib.request
 from collections import Counter, defaultdict
@@ -39,7 +40,33 @@ LANGUAGE_COLORS = {
 }
 
 
+TOPIC_RULES = (
+    ("data structures", ("data structure", "data-structure", "structures", "leetcode", "ds50")),
+    ("benchmarks", ("benchmark", "speed", "performance")),
+    ("CLI tools", ("cli", "command line", "challenge")),
+    ("language experiments", ("language", "compiler", "runtime", "extensions")),
+    ("systems programming", ("systems programming", "systems language", "c object", "module extensions")),
+    ("tooling", ("tool", "tooling", "automation")),
+)
+
+SYSTEMS_LANGUAGES = {
+    "C",
+    "C++",
+    "Go",
+    "Mojo",
+    "Rust",
+    "Shell",
+    "V",
+    "Zig",
+}
+
+
 def github_json(url: str) -> Any:
+    data, _ = github_json_with_headers(url)
+    return data
+
+
+def github_json_with_headers(url: str, method: str = "GET") -> tuple[Any, dict[str, str]]:
     headers = {
         "Accept": "application/vnd.github+json",
         "User-Agent": f"{USERNAME}-profile-readme-generator",
@@ -48,9 +75,11 @@ def github_json(url: str) -> Any:
     if TOKEN:
         headers["Authorization"] = f"Bearer {TOKEN}"
 
-    req = urllib.request.Request(url, headers=headers)
+    req = urllib.request.Request(url, headers=headers, method=method)
     with urllib.request.urlopen(req, timeout=30) as response:
-        return json.loads(response.read().decode("utf-8"))
+        body = response.read().decode("utf-8")
+        data = json.loads(body) if body else {}
+        return data, dict(response.headers.items())
 
 
 def public_repos() -> list[dict[str, Any]]:
@@ -116,6 +145,89 @@ def format_bytes(value: int) -> str:
             return f"{size:.1f} {unit}" if unit != "B" else f"{int(size)} B"
         size /= 1024
     return f"{value} B"
+
+
+def join_words(items: list[str], fallback: str = "public source projects") -> str:
+    cleaned = [item for item in items if item]
+    if not cleaned:
+        return fallback
+    if len(cleaned) == 1:
+        return cleaned[0]
+    if len(cleaned) == 2:
+        return f"{cleaned[0]} and {cleaned[1]}"
+    return ", ".join(cleaned[:-1]) + f", and {cleaned[-1]}"
+
+
+def top_language_names(stats: dict[str, Any], limit: int = 3) -> list[str]:
+    return [row["name"] for row in stats.get("languages", [])[:limit] if text(row.get("name"))]
+
+
+def repo_topics(repos: list[dict[str, Any]], languages: list[str], limit: int = 4) -> list[str]:
+    corpus = " ".join(
+        " ".join(
+            [
+                text(repo.get("name")),
+                text(repo.get("description")),
+                language_name(repo),
+            ]
+        ).lower()
+        for repo in repos
+    )
+
+    topics: list[str] = []
+    for topic, needles in TOPIC_RULES:
+        if any(needle in corpus for needle in needles):
+            topics.append(topic)
+
+    if any(language in SYSTEMS_LANGUAGES for language in languages) and "systems programming" not in topics:
+        topics.append("systems programming")
+
+    return topics[:limit] or ["source projects", "language telemetry", "tooling"]
+
+
+def positioning_line(stats: dict[str, Any], active_count: int) -> str:
+    languages = top_language_names(stats, 4)
+    repo_count = int(stats.get("repo_count", 0))
+    language_count = len(stats.get("languages", []))
+    stack = join_words(languages, "the current public stack")
+    repo_label = "repository" if repo_count == 1 else "repositories"
+    active_label = "project" if active_count == 1 else "projects"
+    return (
+        f"**Positioning:** byte-weighted public source profile across {escape(stack)}, "
+        f"tracking {repo_count} source {repo_label}, {active_count} active {active_label}, "
+        f"and {language_count} detected languages from GitHub repository data."
+    )
+
+
+def mission_control_text(
+    user: dict[str, Any],
+    repos: list[dict[str, Any]],
+    stats: dict[str, Any],
+    active_count: int,
+    total_stars: int,
+    total_forks: int,
+    updated: str,
+) -> str:
+    bio = text(user.get("bio"), "Systems builder focused on data structures, language experiments, and fast tooling.")
+    languages = top_language_names(stats, 3)
+    topics = repo_topics(repos, languages)
+    topic_line = join_words(topics)
+    stack_line = join_words(languages, "the current stack")
+    total_bytes = format_bytes(int(stats.get("total_bytes", 0)))
+    new_languages = stats.get("new_languages", [])
+    new_line = "none" if not new_languages else join_words([str(language) for language in new_languages[:4]])
+
+    return f"""{bio}
+
+Current work clusters around {topic_line}. The heaviest source footprint is {stack_line}, based on {total_bytes} of language bytes from public non-fork source repositories.
+
+```text
+identity :: {escape(text(user.get("name"), USERNAME))} / {escape(stack_line)}
+focus    :: {escape(topic_line)}
+repos    :: {active_count} active / {int(stats.get("repo_count", 0))} scanned
+signals  :: stars {total_stars} / forks {total_forks} / new languages {escape(new_line)}
+scan     :: daily GitHub language bytes / {escape(updated)}
+```"""
 
 
 def load_language_snapshot() -> dict[str, Any]:
@@ -314,6 +426,196 @@ def stack_badges(stats: dict[str, Any]) -> str:
     )
 
 
+def last_link_page(headers: dict[str, str]) -> int | None:
+    link = headers.get("Link", "")
+    for part in link.split(","):
+        if 'rel="last"' not in part:
+            continue
+        match = re.search(r"[?&]page=(\d+)>", part)
+        if match:
+            return int(match.group(1))
+    return None
+
+
+def api_count(url: str) -> int:
+    try:
+        data, headers = github_json_with_headers(url)
+    except (urllib.error.URLError, TimeoutError):
+        return 0
+
+    if isinstance(data, dict) and "total_count" in data:
+        return int(data.get("total_count", 0))
+
+    last_page = last_link_page(headers)
+    if last_page is not None:
+        return last_page
+
+    if isinstance(data, list):
+        return len(data)
+    return 0
+
+
+def search_count(query: str) -> int:
+    url = "https://api.github.com/search/issues?" + urlencode({"q": query, "per_page": "1"})
+    return api_count(url)
+
+
+def repo_commit_count(repo: dict[str, Any], since: dt.datetime | None = None) -> int:
+    params = {"author": USERNAME, "per_page": "1"}
+    if since is not None:
+        params["since"] = since.isoformat(timespec="seconds").replace("+00:00", "Z")
+    url = f"https://api.github.com/repos/{USERNAME}/{repo['name']}/commits?{urlencode(params)}"
+    return api_count(url)
+
+
+def collect_github_stats(repos: list[dict[str, Any]], now: dt.datetime, total_stars: int) -> dict[str, int]:
+    one_year_ago = now - dt.timedelta(days=365)
+    total_commits = 0
+    contributed_last_year = 0
+
+    for repo in repos:
+        total_commits += repo_commit_count(repo)
+        if repo_commit_count(repo, one_year_ago) > 0:
+            contributed_last_year += 1
+
+    return {
+        "stars": total_stars,
+        "commits": total_commits,
+        "prs": search_count(f"author:{USERNAME} type:pr"),
+        "issues": search_count(f"author:{USERNAME} type:issue"),
+        "contributed_last_year": contributed_last_year,
+    }
+
+
+def language_bar_segments(stats: dict[str, Any], x: int, y: int, width: int, height: int, limit: int = 5) -> str:
+    segments: list[str] = []
+    cursor = x
+    for row in stats.get("languages", [])[:limit]:
+        segment_width = round(width * float(row["percent"]) / 100)
+        if segment_width <= 0:
+            continue
+        segments.append(
+            f'<rect x="{cursor}" y="{y}" width="{segment_width}" height="{height}" fill="#{row["color"]}"/>'
+        )
+        cursor += segment_width
+
+    if cursor < x + width:
+        segments.append(f'<rect x="{cursor}" y="{y}" width="{x + width - cursor}" height="{height}" fill="#1f2a44"/>')
+
+    return "\n    ".join(segments)
+
+
+def language_legend(stats: dict[str, Any], limit: int = 5) -> str:
+    rows: list[str] = []
+    positions = [(742, 160), (1004, 160), (742, 202), (1004, 202), (742, 244)]
+    for row, (x, y) in zip(stats.get("languages", [])[:limit], positions):
+        name = escape(row["name"])
+        percent = f"{row['percent']:.2f}%"
+        color = row["color"]
+        rows.append(f'<circle cx="{x}" cy="{y - 5}" r="8" fill="#{color}"/>')
+        rows.append(
+            f'<text x="{x + 18}" y="{y}" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" '
+            f'font-size="18">{name} {percent}</text>'
+        )
+    return "\n    ".join(rows)
+
+
+def stats_rows(github_stats: dict[str, int]) -> str:
+    rows = [
+        ("Total Stars Earned", github_stats["stars"], "star"),
+        ("Total Commits", github_stats["commits"], "commit"),
+        ("Total PRs", github_stats["prs"], "pr"),
+        ("Total Issues", github_stats["issues"], "issue"),
+        ("Contributed to (last year)", github_stats["contributed_last_year"], "repo"),
+    ]
+    output: list[str] = []
+    for index, (label, value, icon) in enumerate(rows):
+        y = 94 + index * 38
+        output.append(f'<use href="#icon-{icon}" x="58" y="{y - 18}" width="20" height="20"/>')
+        output.append(
+            f'<text x="94" y="{y}" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" '
+            f'font-size="18" font-weight="700">{escape(label)}:</text>'
+        )
+        output.append(
+            f'<text x="374" y="{y}" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" '
+            f'font-size="18" font-weight="800" text-anchor="end">{value}</text>'
+        )
+    return "\n    ".join(output)
+
+
+def write_github_telemetry_svg(stats: dict[str, Any], github_stats: dict[str, int], updated: str) -> None:
+    ASSETS.mkdir(exist_ok=True)
+    top = stats.get("languages", [{}])[0]
+    top_label = f"{escape(top.get('name', 'Systems'))} {float(top.get('percent', 0)):.1f}%"
+
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="300" viewBox="0 0 1280 300" role="img" aria-label="Automated GitHub stats and language telemetry">
+  <defs>
+    <symbol id="icon-star" viewBox="0 0 24 24">
+      <path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" fill="none" stroke="#c084fc" stroke-width="2" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-commit" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4" fill="none" stroke="#c084fc" stroke-width="2"/>
+      <path d="M3 12h5M16 12h5" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-pr" viewBox="0 0 24 24">
+      <circle cx="6" cy="5" r="2" fill="none" stroke="#c084fc" stroke-width="2"/>
+      <circle cx="18" cy="19" r="2" fill="none" stroke="#c084fc" stroke-width="2"/>
+      <path d="M6 7v12M18 5v6c0 3-2 5-5 5h-1" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-issue" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" fill="none" stroke="#c084fc" stroke-width="2"/>
+      <path d="M12 7v6M12 17h.01" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="icon-repo" viewBox="0 0 24 24">
+      <path d="M6 3h10a3 3 0 0 1 3 3v15H8a3 3 0 0 1-3-3V4a1 1 0 0 1 1-1z" fill="none" stroke="#c084fc" stroke-width="2"/>
+      <path d="M8 17h11M9 7h6" stroke="#c084fc" stroke-width="2" stroke-linecap="round"/>
+    </symbol>
+    <filter id="cardGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="300" fill="#05070d"/>
+  <rect x="22" y="24" width="676" height="252" rx="7" fill="#171925" stroke="#202942" stroke-width="1"/>
+  <rect x="712" y="24" width="546" height="252" rx="7" fill="#171925" stroke="#202942" stroke-width="1"/>
+
+  <text x="58" y="72" fill="#7aa7ff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="800">Tom Lo's GitHub Stats</text>
+  <g>
+    {stats_rows(github_stats)}
+  </g>
+
+  <g transform="translate(510 96)">
+    <circle cx="62" cy="62" r="54" fill="#22304e"/>
+    <circle cx="62" cy="62" r="43" fill="#05070d"/>
+    <path d="M62 18a44 44 0 1 1-37 68" fill="none" stroke="#2dd4bf" stroke-width="13" stroke-linecap="round" filter="url(#cardGlow)"/>
+    <circle cx="62" cy="62" r="26" fill="#2dd4bf"/>
+    <text x="62" y="69" text-anchor="middle" fill="#05070d" font-family="JetBrains Mono, Consolas, monospace" font-size="21" font-weight="900">GH</text>
+    <circle cx="62" cy="18" r="6" fill="#7aa7ff"/>
+  </g>
+
+  <text x="754" y="78" fill="#7aa7ff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800">Most Used Languages</text>
+  <clipPath id="barClip">
+    <rect x="754" y="112" width="430" height="14" rx="7"/>
+  </clipPath>
+  <g clip-path="url(#barClip)">
+    {language_bar_segments(stats, 754, 112, 430, 14)}
+  </g>
+  <rect x="754" y="112" width="430" height="14" rx="7" fill="none" stroke="#22304e"/>
+
+  <g>
+    {language_legend(stats)}
+  </g>
+
+  <text x="1236" y="262" fill="#64748b" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12">AUTO {escape(updated.replace(" UTC", "Z"))} / TOP {top_label}</text>
+</svg>
+"""
+    (ASSETS / "github-telemetry.svg").write_text(svg, encoding="utf-8", newline="\n")
+
+
 def write_hero_svg(stats: dict[str, Any], updated: str) -> None:
     ASSETS.mkdir(exist_ok=True)
     languages = stats.get("languages", [])
@@ -480,11 +782,22 @@ def render(repos: list[dict[str, Any]], user: dict[str, Any]) -> str:
     badge_updated = now.strftime("%Y.%m.%d %H:%M UTC")
     previous_snapshot = load_language_snapshot()
     stats = collect_language_stats(stats_repos, previous_snapshot, updated)
+    github_stats = collect_github_stats(source_repos, now, total_stars)
     write_language_snapshot(stats)
     write_hero_svg(stats, updated)
     write_signal_svg(stats, len(non_fork_projects), total_stars, total_forks, updated)
+    write_github_telemetry_svg(stats, github_stats, updated)
 
-    bio = text(user.get("bio"), "Systems builder focused on data structures, language experiments, and fast tooling.")
+    positioning = positioning_line(stats, len(non_fork_projects))
+    mission = mission_control_text(
+        user,
+        source_repos,
+        stats,
+        len(non_fork_projects),
+        total_stars,
+        total_forks,
+        updated,
+    )
     recent = "\n".join(repo_line(repo) for repo in source_repos[:8]) or "- Building in public soon."
 
     return f"""<!-- AUTO-GENERATED by scripts/build_readme.py. Edit the script, not this file. -->
@@ -508,7 +821,7 @@ def render(repos: list[dict[str, Any]], user: dict[str, Any]) -> str:
 
 ## Language Matrix
 
-**Positioning:** polyglot systems-level data/computer scientist and multidisciplinary programmer. This page tracks the languages actually present in my primary public source projects by repository language bytes, not by a hand-written stack list.
+{positioning}
 
 <p align="center">
 {language_badges(stats)}
@@ -520,15 +833,7 @@ def render(repos: list[dict[str, Any]], user: dict[str, Any]) -> str:
 
 ## Mission Control
 
-{bio}
-
-I work at the intersection of systems programming, data structures, computational thinking, and applied tooling. The goal is to inspect the same ideas through multiple language ecosystems, then compare correctness, ergonomics, and runtime behavior.
-
-```text
-identity :: polyglot systems-level data/computer scientist
-scope    :: data structures, runtimes, CLI tools, benchmarks
-scan     :: daily GitHub language bytes
-```
+{mission}
 
 ## Project Radar
 
@@ -543,8 +848,7 @@ scan     :: daily GitHub language bytes
 ## Live Telemetry
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username={USERNAME}&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&rank_icon=github" alt="GitHub stats" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username={USERNAME}&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" alt="Top languages" />
+  <img width="100%" src="./assets/github-telemetry.svg" alt="Automated GitHub stats and language telemetry" />
 </p>
 
 <p align="center">

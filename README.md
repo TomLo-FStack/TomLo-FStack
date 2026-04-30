@@ -14,12 +14,12 @@
   <img alt="Language bytes" src="https://img.shields.io/static/v1?label=language+bytes&message=231.6+KB&color=22c55e&style=for-the-badge&labelColor=0b1020">
   <img alt="Stars" src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020">
   <img alt="Forks" src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020">
-  <img alt="Updated" src="https://img.shields.io/static/v1?label=auto+update&message=2026.04.30+04%3A02+UTC&color=22c55e&style=for-the-badge&labelColor=0b1020">
+  <img alt="Updated" src="https://img.shields.io/static/v1?label=auto+update&message=2026.04.30+10%3A25+UTC&color=22c55e&style=for-the-badge&labelColor=0b1020">
 </p>
 
 ## Language Matrix
 
-**Positioning:** polyglot systems-level data/computer scientist and multidisciplinary programmer. This page tracks the languages actually present in my primary public source projects by repository language bytes, not by a hand-written stack list.
+**Positioning:** byte-weighted public source profile across Mojo, Elixir, V, and Go, tracking 5 source repositories, 5 active projects, and 10 detected languages from GitHub repository data.
 
 <p align="center">
 <img src="https://img.shields.io/static/v1?label=Mojo&message=22.4%25&color=ff4f2e&style=for-the-badge&labelColor=0b1020" alt="Mojo 22.4%" />
@@ -32,7 +32,7 @@
 <img src="https://img.shields.io/static/v1?label=Pony&message=3.4%25&color=64748b&style=for-the-badge&labelColor=0b1020" alt="Pony 3.4%" />
 </p>
 
-New since last daily scan: <img src="https://img.shields.io/static/v1?label=new&message=Batchfile&color=64748b&style=for-the-badge&labelColor=0b1020" alt="new Batchfile" /> <img src="https://img.shields.io/static/v1?label=new&message=Elixir&color=6e4a7e&style=for-the-badge&labelColor=0b1020" alt="new Elixir" /> <img src="https://img.shields.io/static/v1?label=new&message=Pony&color=64748b&style=for-the-badge&labelColor=0b1020" alt="new Pony" /> <img src="https://img.shields.io/static/v1?label=new&message=Shell&color=89e051&style=for-the-badge&labelColor=0b1020" alt="new Shell" />
+No new languages since the last daily scan.
 
 | Language | Share | Bytes | Seen in repos |
 | --- | ---: | ---: | --- |
@@ -49,12 +49,14 @@ New since last daily scan: <img src="https://img.shields.io/static/v1?label=new&
 
 Systems builder focused on data structures, language experiments, and fast tooling.
 
-I work at the intersection of systems programming, data structures, computational thinking, and applied tooling. The goal is to inspect the same ideas through multiple language ecosystems, then compare correctness, ergonomics, and runtime behavior.
+Current work clusters around data structures, benchmarks, CLI tools, and language experiments. The heaviest source footprint is Mojo, Elixir, and V, based on 231.6 KB of language bytes from public non-fork source repositories.
 
 ```text
-identity :: polyglot systems-level data/computer scientist
-scope    :: data structures, runtimes, CLI tools, benchmarks
-scan     :: daily GitHub language bytes
+identity :: Tom Lo / Mojo, Elixir, and V
+focus    :: data structures, benchmarks, CLI tools, and language experiments
+repos    :: 5 active / 5 scanned
+signals  :: stars 0 / forks 0 / new languages none
+scan     :: daily GitHub language bytes / 2026-04-30 10:25 UTC
 ```
 
 ## Project Radar
@@ -117,8 +119,7 @@ scan     :: daily GitHub language bytes
 ## Live Telemetry
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=TomLo-FStack&show_icons=true&theme=tokyonight&hide_border=true&include_all_commits=true&rank_icon=github" alt="GitHub stats" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=TomLo-FStack&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" alt="Top languages" />
+  <img width="100%" src="./assets/github-telemetry.svg" alt="Automated GitHub stats and language telemetry" />
 </p>
 
 <p align="center">
@@ -143,4 +144,4 @@ scan     :: daily GitHub language bytes
 
 This profile README updates itself from GitHub Actions every day. The workflow scans public repository language bytes, detects languages that were not in the previous snapshot, rebuilds this page, and commits the refreshed README plus `assets/language-stats.json`.
 
-<sub>Last generated: 2026-04-30 04:02 UTC</sub>
+<sub>Last generated: 2026-04-30 10:25 UTC</sub>
