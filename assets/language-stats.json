@@ -1,23 +1,37 @@
 {
-  "generated_at": "2026-04-29 22:24 UTC",
-  "repo_count": 3,
-  "total_bytes": 164378,
+  "generated_at": "2026-04-30 04:02 UTC",
+  "repo_count": 5,
+  "total_bytes": 237120,
   "baseline": false,
-  "new_languages": [],
+  "new_languages": [
+    "Batchfile",
+    "Elixir",
+    "Pony",
+    "Shell"
+  ],
   "languages": [
     {
       "name": "Mojo",
       "bytes": 53221,
-      "percent": 32.4,
+      "percent": 22.4,
       "repos": [
         "mojo-data-structures-50"
       ],
       "color": "ff4f2e"
     },
     {
+      "name": "Elixir",
+      "bytes": 50970,
+      "percent": 21.5,
+      "repos": [
+        "elixir-luv-v"
+      ],
+      "color": "6e4a7e"
+    },
+    {
       "name": "V",
       "bytes": 33562,
-      "percent": 20.4,
+      "percent": 14.2,
       "repos": [
         "ds50-speedforge"
       ],
@@ -26,7 +40,7 @@
     {
       "name": "Go",
       "bytes": 31472,
-      "percent": 19.1,
+      "percent": 13.3,
       "repos": [
         "ds50-speedforge"
       ],
@@ -34,18 +48,20 @@
     },
     {
       "name": "PowerShell",
-      "bytes": 18503,
-      "percent": 11.3,
+      "bytes": 28689,
+      "percent": 12.1,
       "repos": [
         "ds50-speedforge",
-        "mojo-data-structures-50"
+        "elixir-luv-v",
+        "mojo-data-structures-50",
+        "pony-fin-terminal"
       ],
       "color": "012456"
     },
     {
       "name": "Python",
       "bytes": 16296,
-      "percent": 9.9,
+      "percent": 6.9,
       "repos": [
         "ds50-speedforge"
       ],
@@ -54,11 +70,39 @@
     {
       "name": "Julia",
       "bytes": 11324,
-      "percent": 6.9,
+      "percent": 4.8,
       "repos": [
         "ds50-speedforge"
       ],
       "color": "a270ba"
+    },
+    {
+      "name": "Pony",
+      "bytes": 7952,
+      "percent": 3.4,
+      "repos": [
+        "pony-fin-terminal"
+      ],
+      "color": "64748b"
+    },
+    {
+      "name": "Shell",
+      "bytes": 3531,
+      "percent": 1.5,
+      "repos": [
+        "elixir-luv-v",
+        "pony-fin-terminal"
+      ],
+      "color": "89e051"
+    },
+    {
+      "name": "Batchfile",
+      "bytes": 103,
+      "percent": 0.0,
+      "repos": [
+        "elixir-luv-v"
+      ],
+      "color": "64748b"
     }
   ]
 }

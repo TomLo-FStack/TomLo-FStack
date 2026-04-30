@@ -23,18 +23,18 @@
 
   <g font-family="JetBrains Mono, Consolas, monospace" font-weight="800" font-size="13">
     <text x="690" y="38" fill="#facc15">SCANNED</text>
-    <text x="690" y="62" fill="#f8fafc">3</text>
+    <text x="690" y="62" fill="#f8fafc">5</text>
     <text x="800" y="38" fill="#22d3ee">ACTIVE</text>
-    <text x="800" y="62" fill="#f8fafc">3</text>
+    <text x="800" y="62" fill="#f8fafc">5</text>
     <text x="900" y="38" fill="#ff2d95">TOP</text>
-    <text x="900" y="62" fill="#f8fafc">MOJO 32.4%</text>
+    <text x="900" y="62" fill="#f8fafc">MOJO 22.4%</text>
     <text x="1034" y="38" fill="#facc15">NEW</text>
-    <text x="1034" y="62" fill="#f8fafc">0</text>
+    <text x="1034" y="62" fill="#f8fafc">4</text>
     <text x="1100" y="38" fill="#22d3ee">STARS</text>
     <text x="1100" y="62" fill="#f8fafc">0</text>
     <text x="1164" y="38" fill="#ff2d95">FORKS</text>
     <text x="1164" y="62" fill="#f8fafc">0</text>
     <text x="1236" y="38" fill="#facc15" text-anchor="end">AUTO</text>
-    <text x="1236" y="62" fill="#f8fafc" text-anchor="end">2026-04-29 22:24Z</text>
+    <text x="1236" y="62" fill="#f8fafc" text-anchor="end">2026-04-30 04:02Z</text>
   </g>
 </svg>
