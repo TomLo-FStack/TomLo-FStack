@@ -40,16 +40,16 @@
     <text x="374" y="94" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">0</text>
     <use href="#icon-commit" x="58" y="114" width="20" height="20"/>
     <text x="94" y="132" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Total Commits:</text>
-    <text x="374" y="132" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">15</text>
+    <text x="374" y="132" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">21</text>
     <use href="#icon-pr" x="58" y="152" width="20" height="20"/>
     <text x="94" y="170" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Total PRs:</text>
     <text x="374" y="170" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">1</text>
     <use href="#icon-issue" x="58" y="190" width="20" height="20"/>
     <text x="94" y="208" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Total Issues:</text>
-    <text x="374" y="208" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">1</text>
+    <text x="374" y="208" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">3</text>
     <use href="#icon-repo" x="58" y="228" width="20" height="20"/>
     <text x="94" y="246" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Contributed to (last year):</text>
-    <text x="374" y="246" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">6</text>
+    <text x="374" y="246" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">7</text>
   </g>
 
   <g transform="translate(510 96)">
@@ -66,27 +66,27 @@
     <rect x="754" y="112" width="430" height="14" rx="7"/>
   </clipPath>
   <g clip-path="url(#barClip)">
-    <rect x="754" y="112" width="96" height="14" fill="#ff4f2e"/>
-    <rect x="850" y="112" width="92" height="14" fill="#6e4a7e"/>
-    <rect x="942" y="112" width="61" height="14" fill="#5d87bf"/>
-    <rect x="1003" y="112" width="57" height="14" fill="#00add8"/>
-    <rect x="1060" y="112" width="52" height="14" fill="#012456"/>
-    <rect x="1112" y="112" width="72" height="14" fill="#1f2a44"/>
+    <rect x="754" y="112" width="202" height="14" fill="#6e4a7e"/>
+    <rect x="956" y="112" width="99" height="14" fill="#ff4f2e"/>
+    <rect x="1055" y="112" width="27" height="14" fill="#3776ab"/>
+    <rect x="1082" y="112" width="26" height="14" fill="#5d87bf"/>
+    <rect x="1108" y="112" width="25" height="14" fill="#00add8"/>
+    <rect x="1133" y="112" width="51" height="14" fill="#1f2a44"/>
   </g>
   <rect x="754" y="112" width="430" height="14" rx="7" fill="none" stroke="#22304e"/>
 
   <g>
-    <circle cx="742" cy="155" r="8" fill="#ff4f2e"/>
-    <text x="760" y="160" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Mojo 22.40%</text>
-    <circle cx="1004" cy="155" r="8" fill="#6e4a7e"/>
-    <text x="1022" y="160" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Elixir 21.50%</text>
-    <circle cx="742" cy="197" r="8" fill="#5d87bf"/>
-    <text x="760" y="202" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">V 14.20%</text>
-    <circle cx="1004" cy="197" r="8" fill="#00add8"/>
-    <text x="1022" y="202" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Go 13.30%</text>
-    <circle cx="742" cy="239" r="8" fill="#012456"/>
-    <text x="760" y="244" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">PowerShell 12.10%</text>
+    <circle cx="742" cy="155" r="8" fill="#6e4a7e"/>
+    <text x="760" y="160" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Elixir 46.90%</text>
+    <circle cx="1004" cy="155" r="8" fill="#ff4f2e"/>
+    <text x="1022" y="160" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Mojo 23.10%</text>
+    <circle cx="742" cy="197" r="8" fill="#3776ab"/>
+    <text x="760" y="202" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Python 6.30%</text>
+    <circle cx="1004" cy="197" r="8" fill="#5d87bf"/>
+    <text x="1022" y="202" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">V 6.10%</text>
+    <circle cx="742" cy="239" r="8" fill="#00add8"/>
+    <text x="760" y="244" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Go 5.80%</text>
   </g>
 
-  <text x="1236" y="262" fill="#64748b" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12">AUTO 2026-04-30 10:28Z / TOP Mojo 22.4%</text>
+  <text x="1236" y="262" fill="#64748b" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12">AUTO 2026-05-01 04:14Z / TOP Elixir 46.9%</text>
 </svg>

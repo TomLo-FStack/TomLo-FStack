@@ -51,7 +51,7 @@
     <text x="4" y="136" fill="#ff2d95" opacity="0.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="56" font-weight="900">SYSTEMS SCIENTIST</text>
     <text x="0" y="136" fill="#f8fafc" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="56" font-weight="900">SYSTEMS SCIENTIST</text>
     <rect x="0" y="162" width="690" height="4" fill="url(#hot)" filter="url(#glow)"/>
-    <text x="0" y="204" fill="#e2e8f0" font-family="JetBrains Mono, Consolas, monospace" font-size="21">tracked stack :: MOJO / ELIXIR / V / GO</text>
+    <text x="0" y="204" fill="#e2e8f0" font-family="JetBrains Mono, Consolas, monospace" font-size="21">tracked stack :: ELIXIR / MOJO / PYTHON / V</text>
     <text x="0" y="236" fill="#94a3b8" font-family="JetBrains Mono, Consolas, monospace" font-size="17">systems-level data + computer science across public projects</text>
   </g>
 
@@ -60,19 +60,19 @@
     <path d="M0 0H118L154 34H380" fill="none" stroke="#facc15" stroke-width="4"/>
     <rect x="24" y="70" width="332" height="1" fill="#22304e"/>
     <text x="28" y="44" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">RESEARCH HUD</text>
-    <text x="222" y="44" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="13">MOJO 22.4%</text>
-    <text x="28" y="98" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">scanned    5</text>
-    <text x="28" y="128" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">languages  10</text>
+    <text x="222" y="44" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="13">ELIXIR 46.9%</text>
+    <text x="28" y="98" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">scanned    6</text>
+    <text x="28" y="128" fill="#f8fafc" font-family="JetBrains Mono, Consolas, monospace" font-size="22">languages  11</text>
   </g>
 
   <g transform="translate(64 318)">
     <rect x="0" y="-24" width="202" height="40" fill="#05070d" stroke="#facc15" stroke-width="2"/>
     <rect x="220" y="-24" width="212" height="40" fill="#05070d" stroke="#22d3ee" stroke-width="2"/>
     <rect x="450" y="-24" width="212" height="40" fill="#05070d" stroke="#ff2d95" stroke-width="2"/>
-    <text x="18" y="2" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">MOJO 22.4%</text>
-    <text x="238" y="2" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">ELIXIR 21.5%</text>
-    <text x="468" y="2" fill="#ff2d95" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">V 14.2%</text>
+    <text x="18" y="2" fill="#facc15" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">ELIXIR 46.9%</text>
+    <text x="238" y="2" fill="#22d3ee" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">MOJO 23.1%</text>
+    <text x="468" y="2" fill="#ff2d95" font-family="JetBrains Mono, Consolas, monospace" font-size="16" font-weight="800">PYTHON 6.3%</text>
   </g>
 
-  <text x="1216" y="346" fill="#f8fafc" opacity="0.62" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="13">BYTES 231.6 KB / AUTO 2026-04-30 10:28 UTC</text>
+  <text x="1216" y="346" fill="#f8fafc" opacity="0.62" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="13">BYTES 533.1 KB / AUTO 2026-05-01 04:14 UTC</text>
 </svg>
