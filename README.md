@@ -14,7 +14,7 @@
   <img alt="Language bytes" src="https://img.shields.io/static/v1?label=language+bytes&message=533.1+KB&color=22c55e&style=for-the-badge&labelColor=0b1020">
   <img alt="Stars" src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020">
   <img alt="Forks" src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020">
-  <img alt="Updated" src="https://img.shields.io/static/v1?label=auto+update&message=2026.05.01+04%3A14+UTC&color=22c55e&style=for-the-badge&labelColor=0b1020">
+  <img alt="Updated" src="https://img.shields.io/static/v1?label=auto+update&message=2026.05.02+03%3A49+UTC&color=22c55e&style=for-the-badge&labelColor=0b1020">
 </p>
 
 ## Language Matrix
@@ -32,7 +32,7 @@
 <img src="https://img.shields.io/static/v1?label=Shell&message=1.5%25&color=89e051&style=for-the-badge&labelColor=0b1020" alt="Shell 1.5%" />
 </p>
 
-New since last daily scan: <img src="https://img.shields.io/static/v1?label=new&message=C&color=555555&style=for-the-badge&labelColor=0b1020" alt="new C" />
+No new languages since the last daily scan.
 
 | Language | Share | Bytes | Seen in repos |
 | --- | ---: | ---: | --- |
@@ -55,8 +55,8 @@ Current work clusters around data structures, benchmarks, CLI tools, and languag
 identity :: Tom Lo / Elixir, Mojo, and Python
 focus    :: data structures, benchmarks, CLI tools, and language experiments
 repos    :: 6 active / 6 scanned
-signals  :: stars 0 / forks 0 / new languages C
-scan     :: daily GitHub language bytes / 2026-05-01 04:14 UTC
+signals  :: stars 0 / forks 0 / new languages none
+scan     :: daily GitHub language bytes / 2026-05-02 03:49 UTC
 ```
 
 ## Project Radar
@@ -150,4 +150,4 @@ scan     :: daily GitHub language bytes / 2026-05-01 04:14 UTC
 
 This profile README updates itself from GitHub Actions every day. The workflow scans public repository language bytes, detects languages that were not in the previous snapshot, rebuilds this page, and commits the refreshed README plus `assets/language-stats.json`.
 
-<sub>Last generated: 2026-05-01 04:14 UTC</sub>
+<sub>Last generated: 2026-05-02 03:49 UTC</sub>
