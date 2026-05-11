@@ -1,14 +1,19 @@
 {
-  "generated_at": "2026-05-10 04:13 UTC",
-  "repo_count": 6,
-  "total_bytes": 545939,
+  "generated_at": "2026-05-11 04:34 UTC",
+  "repo_count": 7,
+  "total_bytes": 584837,
   "baseline": false,
-  "new_languages": [],
+  "new_languages": [
+    "CSS",
+    "HTML",
+    "JavaScript",
+    "TypeScript"
+  ],
   "languages": [
     {
       "name": "Elixir",
       "bytes": 256281,
-      "percent": 46.9,
+      "percent": 43.8,
       "repos": [
         "elixir-luv-v"
       ],
@@ -17,7 +22,7 @@
     {
       "name": "Mojo",
       "bytes": 126211,
-      "percent": 23.1,
+      "percent": 21.6,
       "repos": [
         "Lo",
         "mojo-data-structures-50"
@@ -26,18 +31,19 @@
     },
     {
       "name": "Python",
-      "bytes": 34374,
-      "percent": 6.3,
+      "bytes": 41777,
+      "percent": 7.1,
       "repos": [
         "ds50-speedforge",
-        "elixir-luv-v"
+        "elixir-luv-v",
+        "rk-euler-teaching-site"
       ],
       "color": "3776ab"
     },
     {
       "name": "V",
       "bytes": 33562,
-      "percent": 6.1,
+      "percent": 5.7,
       "repos": [
         "ds50-speedforge"
       ],
@@ -46,7 +52,7 @@
     {
       "name": "Go",
       "bytes": 31472,
-      "percent": 5.8,
+      "percent": 5.4,
       "repos": [
         "ds50-speedforge"
       ],
@@ -55,7 +61,7 @@
     {
       "name": "PowerShell",
       "bytes": 28689,
-      "percent": 5.3,
+      "percent": 4.9,
       "repos": [
         "ds50-speedforge",
         "elixir-luv-v",
@@ -65,18 +71,28 @@
       "color": "012456"
     },
     {
-      "name": "Julia",
-      "bytes": 11324,
-      "percent": 2.1,
+      "name": "TypeScript",
+      "bytes": 20148,
+      "percent": 3.4,
       "repos": [
-        "ds50-speedforge"
+        "rk-euler-teaching-site"
+      ],
+      "color": "3178c6"
+    },
+    {
+      "name": "Julia",
+      "bytes": 14977,
+      "percent": 2.6,
+      "repos": [
+        "ds50-speedforge",
+        "rk-euler-teaching-site"
       ],
       "color": "a270ba"
     },
     {
       "name": "Shell",
       "bytes": 8399,
-      "percent": 1.5,
+      "percent": 1.4,
       "repos": [
         "Lo",
         "elixir-luv-v",
@@ -87,7 +103,7 @@
     {
       "name": "Pony",
       "bytes": 7952,
-      "percent": 1.5,
+      "percent": 1.4,
       "repos": [
         "pony-fin-terminal"
       ],
@@ -96,11 +112,38 @@
     {
       "name": "C",
       "bytes": 7572,
-      "percent": 1.4,
+      "percent": 1.3,
       "repos": [
         "Lo"
       ],
       "color": "555555"
+    },
+    {
+      "name": "CSS",
+      "bytes": 6729,
+      "percent": 1.2,
+      "repos": [
+        "rk-euler-teaching-site"
+      ],
+      "color": "563d7c"
+    },
+    {
+      "name": "JavaScript",
+      "bytes": 591,
+      "percent": 0.1,
+      "repos": [
+        "rk-euler-teaching-site"
+      ],
+      "color": "f1e05a"
+    },
+    {
+      "name": "HTML",
+      "bytes": 374,
+      "percent": 0.1,
+      "repos": [
+        "rk-euler-teaching-site"
+      ],
+      "color": "e34c26"
     },
     {
       "name": "Batchfile",
