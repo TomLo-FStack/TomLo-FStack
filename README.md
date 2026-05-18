@@ -14,7 +14,7 @@
   <img alt="Language bytes" src="https://img.shields.io/static/v1?label=language+bytes&message=571.1+KB&color=22c55e&style=for-the-badge&labelColor=0b1020">
   <img alt="Stars" src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020">
   <img alt="Forks" src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020">
-  <img alt="Updated" src="https://img.shields.io/static/v1?label=auto+update&message=2026.05.17+04%3A20+UTC&color=22c55e&style=for-the-badge&labelColor=0b1020">
+  <img alt="Updated" src="https://img.shields.io/static/v1?label=auto+update&message=2026.05.18+04%3A40+UTC&color=22c55e&style=for-the-badge&labelColor=0b1020">
 </p>
 
 ## Language Matrix
@@ -56,7 +56,7 @@ identity :: Tom Lo / Elixir, Mojo, and Python
 focus    :: data structures, benchmarks, CLI tools, and language experiments
 repos    :: 7 active / 7 scanned
 signals  :: stars 0 / forks 0 / new languages none
-scan     :: daily GitHub language bytes / 2026-05-17 04:20 UTC
+scan     :: daily GitHub language bytes / 2026-05-18 04:40 UTC
 ```
 
 ## Project Radar
@@ -150,4 +150,4 @@ scan     :: daily GitHub language bytes / 2026-05-17 04:20 UTC
 
 This profile README updates itself from GitHub Actions every day. The workflow scans public repository language bytes, detects languages that were not in the previous snapshot, rebuilds this page, and commits the refreshed README plus `assets/language-stats.json`.
 
-<sub>Last generated: 2026-05-17 04:20 UTC</sub>
+<sub>Last generated: 2026-05-18 04:40 UTC</sub>
