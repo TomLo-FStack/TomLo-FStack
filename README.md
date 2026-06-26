@@ -9,54 +9,54 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/TomLo-FStack?tab=repositories"><img alt="Tracked repos" src="https://img.shields.io/static/v1?label=tracked+repos&message=8&color=0f172a&style=for-the-badge&labelColor=0b1020"></a>
-  <img alt="Tracked languages" src="https://img.shields.io/static/v1?label=tracked+languages&message=15&color=7c3aed&style=for-the-badge&labelColor=0b1020">
-  <img alt="Language bytes" src="https://img.shields.io/static/v1?label=language+bytes&message=582.6+KB&color=22c55e&style=for-the-badge&labelColor=0b1020">
+  <a href="https://github.com/TomLo-FStack?tab=repositories"><img alt="Tracked repos" src="https://img.shields.io/static/v1?label=tracked+repos&message=9&color=0f172a&style=for-the-badge&labelColor=0b1020"></a>
+  <img alt="Tracked languages" src="https://img.shields.io/static/v1?label=tracked+languages&message=16&color=7c3aed&style=for-the-badge&labelColor=0b1020">
+  <img alt="Language bytes" src="https://img.shields.io/static/v1?label=language+bytes&message=628.9+KB&color=22c55e&style=for-the-badge&labelColor=0b1020">
   <img alt="Stars" src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020">
   <img alt="Forks" src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020">
-  <img alt="Updated" src="https://img.shields.io/static/v1?label=auto+update&message=2026.06.25+04%3A21+UTC&color=22c55e&style=for-the-badge&labelColor=0b1020">
+  <img alt="Updated" src="https://img.shields.io/static/v1?label=auto+update&message=2026.06.26+04%3A37+UTC&color=22c55e&style=for-the-badge&labelColor=0b1020">
 </p>
 
 ## Language Matrix
 
-**Positioning:** byte-weighted public source profile across Elixir, Mojo, Python, and V, tracking 8 source repositories, 8 active projects, and 15 detected languages from GitHub repository data.
+**Positioning:** byte-weighted public source profile across Elixir, Mojo, C++, and Python, tracking 9 source repositories, 9 active projects, and 16 detected languages from GitHub repository data.
 
 <p align="center">
-<img src="https://img.shields.io/static/v1?label=Elixir&message=43.0%25&color=6e4a7e&style=for-the-badge&labelColor=0b1020" alt="Elixir 43.0%" />
-<img src="https://img.shields.io/static/v1?label=Mojo&message=21.2%25&color=ff4f2e&style=for-the-badge&labelColor=0b1020" alt="Mojo 21.2%" />
-<img src="https://img.shields.io/static/v1?label=Python&message=7.8%25&color=3776ab&style=for-the-badge&labelColor=0b1020" alt="Python 7.8%" />
-<img src="https://img.shields.io/static/v1?label=V&message=5.6%25&color=5d87bf&style=for-the-badge&labelColor=0b1020" alt="V 5.6%" />
-<img src="https://img.shields.io/static/v1?label=Go&message=5.3%25&color=00add8&style=for-the-badge&labelColor=0b1020" alt="Go 5.3%" />
-<img src="https://img.shields.io/static/v1?label=PowerShell&message=4.8%25&color=012456&style=for-the-badge&labelColor=0b1020" alt="PowerShell 4.8%" />
-<img src="https://img.shields.io/static/v1?label=TypeScript&message=4.1%25&color=3178c6&style=for-the-badge&labelColor=0b1020" alt="TypeScript 4.1%" />
-<img src="https://img.shields.io/static/v1?label=Julia&message=2.5%25&color=a270ba&style=for-the-badge&labelColor=0b1020" alt="Julia 2.5%" />
+<img src="https://img.shields.io/static/v1?label=Elixir&message=39.8%25&color=6e4a7e&style=for-the-badge&labelColor=0b1020" alt="Elixir 39.8%" />
+<img src="https://img.shields.io/static/v1?label=Mojo&message=19.6%25&color=ff4f2e&style=for-the-badge&labelColor=0b1020" alt="Mojo 19.6%" />
+<img src="https://img.shields.io/static/v1?label=C%2B%2B&message=7.4%25&color=f34b7d&style=for-the-badge&labelColor=0b1020" alt="C++ 7.4%" />
+<img src="https://img.shields.io/static/v1?label=Python&message=7.2%25&color=3776ab&style=for-the-badge&labelColor=0b1020" alt="Python 7.2%" />
+<img src="https://img.shields.io/static/v1?label=V&message=5.2%25&color=5d87bf&style=for-the-badge&labelColor=0b1020" alt="V 5.2%" />
+<img src="https://img.shields.io/static/v1?label=Go&message=4.9%25&color=00add8&style=for-the-badge&labelColor=0b1020" alt="Go 4.9%" />
+<img src="https://img.shields.io/static/v1?label=PowerShell&message=4.5%25&color=012456&style=for-the-badge&labelColor=0b1020" alt="PowerShell 4.5%" />
+<img src="https://img.shields.io/static/v1?label=TypeScript&message=3.8%25&color=3178c6&style=for-the-badge&labelColor=0b1020" alt="TypeScript 3.8%" />
 </p>
 
-No new languages since the last daily scan.
+New since last daily scan: <img src="https://img.shields.io/static/v1?label=new&message=C%2B%2B&color=f34b7d&style=for-the-badge&labelColor=0b1020" alt="new C++" />
 
 | Language | Share | Bytes | Seen in repos |
 | --- | ---: | ---: | --- |
-| `Elixir` | `43.0%` | `250.3 KB` | elixir-luv-v |
-| `Mojo` | `21.2%` | `123.3 KB` | Lo, mojo-data-structures-50 |
-| `Python` | `7.8%` | `45.3 KB` | ds50-speedforge, elixir-luv-v, pixel-cat-web, rk-euler-teaching-site |
-| `V` | `5.6%` | `32.8 KB` | ds50-speedforge |
-| `Go` | `5.3%` | `30.7 KB` | ds50-speedforge |
-| `PowerShell` | `4.8%` | `28.0 KB` | ds50-speedforge, elixir-luv-v, mojo-data-structures-50, pony-fin-terminal |
-| `TypeScript` | `4.1%` | `23.7 KB` | pixel-cat-web, rk-euler-teaching-site |
-| `Julia` | `2.5%` | `14.6 KB` | ds50-speedforge, rk-euler-teaching-site |
+| `Elixir` | `39.8%` | `250.3 KB` | elixir-luv-v |
+| `Mojo` | `19.6%` | `123.3 KB` | Lo, mojo-data-structures-50 |
+| `C++` | `7.4%` | `46.3 KB` | win-liquid-glass |
+| `Python` | `7.2%` | `45.3 KB` | ds50-speedforge, elixir-luv-v, pixel-cat-web, rk-euler-teaching-site |
+| `V` | `5.2%` | `32.8 KB` | ds50-speedforge |
+| `Go` | `4.9%` | `30.7 KB` | ds50-speedforge |
+| `PowerShell` | `4.5%` | `28.0 KB` | ds50-speedforge, elixir-luv-v, mojo-data-structures-50, pony-fin-terminal |
+| `TypeScript` | `3.8%` | `23.7 KB` | pixel-cat-web, rk-euler-teaching-site |
 
 ## Mission Control
 
 Systems builder focused on data structures, language experiments, and fast tooling.
 
-Current work clusters around data structures, benchmarks, CLI tools, and language experiments. The heaviest source footprint is Elixir, Mojo, and Python, based on 582.6 KB of language bytes from public non-fork source repositories.
+Current work clusters around data structures, benchmarks, CLI tools, and language experiments. The heaviest source footprint is Elixir, Mojo, and C++, based on 628.9 KB of language bytes from public non-fork source repositories.
 
 ```text
-identity :: Tom Lo / Elixir, Mojo, and Python
+identity :: Tom Lo / Elixir, Mojo, and C++
 focus    :: data structures, benchmarks, CLI tools, and language experiments
-repos    :: 8 active / 8 scanned
-signals  :: stars 0 / forks 0 / new languages none
-scan     :: daily GitHub language bytes / 2026-06-25 04:21 UTC
+repos    :: 9 active / 9 scanned
+signals  :: stars 0 / forks 0 / new languages C++
+scan     :: daily GitHub language bytes / 2026-06-26 04:37 UTC
 ```
 
 ## Project Radar
@@ -64,44 +64,44 @@ scan     :: daily GitHub language bytes / 2026-06-25 04:21 UTC
 <table>
 <tr>
 <td width="50%" valign="top">
+<a href="https://github.com/TomLo-FStack/win-liquid-glass"><strong>win-liquid-glass</strong></a><br/>
+<span>Prototype: native Windows Liquid Glass refraction lens — D3D11 + DXGI Desktop Duplication + DirectComposition. A draggable topmost lens that optically refracts the live desktop behind it.</span><br/><br/>
+<img src="https://img.shields.io/static/v1?label=lang&message=C%2B%2B&color=f34b7d&style=for-the-badge&labelColor=0b1020" alt="C++" /> <img src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020" alt="stars 0" /> <img src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020" alt="forks 0" /><br/>
+<sub>last push: <code>2026-06-25</code></sub>
+</td>
+<td width="50%" valign="top">
 <a href="https://github.com/TomLo-FStack/pixel-cat-web"><strong>pixel-cat-web</strong></a><br/>
 <span>No description yet.</span><br/><br/>
 <img src="https://img.shields.io/static/v1?label=lang&message=Python&color=3776ab&style=for-the-badge&labelColor=0b1020" alt="Python" /> <img src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020" alt="stars 0" /> <img src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020" alt="forks 0" /><br/>
 <sub>last push: <code>2026-06-05</code></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="https://github.com/TomLo-FStack/rk-euler-teaching-site"><strong>rk-euler-teaching-site</strong></a><br/>
 <span>No description yet.</span><br/><br/>
 <img src="https://img.shields.io/static/v1?label=lang&message=TypeScript&color=3178c6&style=for-the-badge&labelColor=0b1020" alt="TypeScript" /> <img src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020" alt="stars 0" /> <img src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020" alt="forks 0" /><br/>
 <sub>last push: <code>2026-05-10</code></sub>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 <a href="https://github.com/TomLo-FStack/Lo"><strong>Lo</strong></a><br/>
 <span>Mojo-native HTTP/1.1 core for local services and internal APIs</span><br/><br/>
 <img src="https://img.shields.io/static/v1?label=lang&message=Mojo&color=ff4f2e&style=for-the-badge&labelColor=0b1020" alt="Mojo" /> <img src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020" alt="stars 0" /> <img src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020" alt="forks 0" /><br/>
 <sub>last push: <code>2026-04-30</code></sub>
 </td>
+</tr>
+<tr>
 <td width="50%" valign="top">
 <a href="https://github.com/TomLo-FStack/elixir-luv-v"><strong>elixir-luv-v</strong></a><br/>
 <span>Elixir Luv V: a polished Julia-style REPL shell for V</span><br/><br/>
 <img src="https://img.shields.io/static/v1?label=lang&message=Elixir&color=6e4a7e&style=for-the-badge&labelColor=0b1020" alt="Elixir" /> <img src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020" alt="stars 0" /> <img src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020" alt="forks 0" /><br/>
 <sub>last push: <code>2026-04-30</code></sub>
 </td>
-</tr>
-<tr>
 <td width="50%" valign="top">
 <a href="https://github.com/TomLo-FStack/pony-fin-terminal"><strong>pony-fin-terminal</strong></a><br/>
 <span>A small Pony finance terminal backed by public Stooq quote CSV data</span><br/><br/>
 <img src="https://img.shields.io/static/v1?label=lang&message=PowerShell&color=012456&style=for-the-badge&labelColor=0b1020" alt="PowerShell" /> <img src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020" alt="stars 0" /> <img src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020" alt="forks 0" /><br/>
 <sub>last push: <code>2026-04-30</code></sub>
-</td>
-<td width="50%" valign="top">
-<a href="https://github.com/TomLo-FStack/mojo-data-structures-50"><strong>mojo-data-structures-50</strong></a><br/>
-<span>Mojo implementations for 50 classic data-structure LeetCode problems.</span><br/><br/>
-<img src="https://img.shields.io/static/v1?label=lang&message=Mojo&color=ff4f2e&style=for-the-badge&labelColor=0b1020" alt="Mojo" /> <img src="https://img.shields.io/static/v1?label=stars&message=0&color=f59e0b&style=for-the-badge&labelColor=0b1020" alt="stars 0" /> <img src="https://img.shields.io/static/v1?label=forks&message=0&color=38bdf8&style=for-the-badge&labelColor=0b1020" alt="forks 0" /><br/>
-<sub>last push: <code>2026-04-29</code></sub>
 </td>
 </tr>
 </table>
@@ -111,12 +111,12 @@ scan     :: daily GitHub language bytes / 2026-06-25 04:21 UTC
 <p align="center">
 <img src="https://img.shields.io/static/v1?label=stack&message=Elixir&color=6e4a7e&style=for-the-badge&labelColor=0b1020" alt="Elixir" />
 <img src="https://img.shields.io/static/v1?label=stack&message=Mojo&color=ff4f2e&style=for-the-badge&labelColor=0b1020" alt="Mojo" />
+<img src="https://img.shields.io/static/v1?label=stack&message=C%2B%2B&color=f34b7d&style=for-the-badge&labelColor=0b1020" alt="C++" />
 <img src="https://img.shields.io/static/v1?label=stack&message=Python&color=3776ab&style=for-the-badge&labelColor=0b1020" alt="Python" />
 <img src="https://img.shields.io/static/v1?label=stack&message=V&color=5d87bf&style=for-the-badge&labelColor=0b1020" alt="V" />
 <img src="https://img.shields.io/static/v1?label=stack&message=Go&color=00add8&style=for-the-badge&labelColor=0b1020" alt="Go" />
 <img src="https://img.shields.io/static/v1?label=stack&message=PowerShell&color=012456&style=for-the-badge&labelColor=0b1020" alt="PowerShell" />
 <img src="https://img.shields.io/static/v1?label=stack&message=TypeScript&color=3178c6&style=for-the-badge&labelColor=0b1020" alt="TypeScript" />
-<img src="https://img.shields.io/static/v1?label=stack&message=Julia&color=a270ba&style=for-the-badge&labelColor=0b1020" alt="Julia" />
 <img src="https://img.shields.io/static/v1?label=stack&message=WSL2&color=2563eb&style=for-the-badge&labelColor=0b1020" alt="WSL2" />
 <img src="https://img.shields.io/static/v1?label=stack&message=GitHub+Actions&color=2088ff&style=for-the-badge&labelColor=0b1020" alt="GitHub Actions" />
 </p>
@@ -137,6 +137,7 @@ scan     :: daily GitHub language bytes / 2026-06-25 04:21 UTC
 
 ## Latest Public Pushes
 
+- [win-liquid-glass](https://github.com/TomLo-FStack/win-liquid-glass) - Prototype: native Windows Liquid Glass refraction lens — D3D11 + DXGI Desktop Duplication + DirectComposition. A draggable topmost lens that optically refracts the live desktop behind it. | `C++` | stars `0` | forks `0` | pushed `2026-06-25`
 - [BlameEngine](https://github.com/TomLo-FStack/BlameEngine) - Blame Engine — headless authoritative-world game engine (UE5 view client + Jolt physics; real-code hacking sandbox) | `Mixed` | stars `0` | forks `0` | pushed `2026-06-06` fork
 - [pixel-cat-web](https://github.com/TomLo-FStack/pixel-cat-web) - No description yet. | `Python` | stars `0` | forks `0` | pushed `2026-06-05`
 - [rk-euler-teaching-site](https://github.com/TomLo-FStack/rk-euler-teaching-site) - No description yet. | `TypeScript` | stars `0` | forks `0` | pushed `2026-05-10`
@@ -144,10 +145,9 @@ scan     :: daily GitHub language bytes / 2026-06-25 04:21 UTC
 - [elixir-luv-v](https://github.com/TomLo-FStack/elixir-luv-v) - Elixir Luv V: a polished Julia-style REPL shell for V | `Elixir` | stars `0` | forks `0` | pushed `2026-04-30`
 - [come-lang](https://github.com/TomLo-FStack/come-lang) - Come (C Object and Module Extensions) is a systems programming language inspired by C. It preserves C’s mental model while removing common pitfalls. | `C` | stars `0` | forks `0` | pushed `2026-04-30` fork
 - [pony-fin-terminal](https://github.com/TomLo-FStack/pony-fin-terminal) - A small Pony finance terminal backed by public Stooq quote CSV data | `PowerShell` | stars `0` | forks `0` | pushed `2026-04-30`
-- [CppTeamWork](https://github.com/TomLo-FStack/CppTeamWork) - No description yet. | `C++` | stars `0` | forks `0` | pushed `2026-04-29` fork
 
 ## Automation
 
 This profile README updates itself from GitHub Actions every day. The workflow scans public repository language bytes, detects languages that were not in the previous snapshot, rebuilds this page, and commits the refreshed README plus `assets/language-stats.json`.
 
-<sub>Last generated: 2026-06-25 04:21 UTC</sub>
+<sub>Last generated: 2026-06-26 04:37 UTC</sub>

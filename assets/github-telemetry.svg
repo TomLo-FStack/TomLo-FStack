@@ -40,7 +40,7 @@
     <text x="374" y="94" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">0</text>
     <use href="#icon-commit" x="58" y="114" width="20" height="20"/>
     <text x="94" y="132" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Total Commits:</text>
-    <text x="374" y="132" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">24</text>
+    <text x="374" y="132" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">25</text>
     <use href="#icon-pr" x="58" y="152" width="20" height="20"/>
     <text x="94" y="170" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Total PRs:</text>
     <text x="374" y="170" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">2</text>
@@ -49,7 +49,7 @@
     <text x="374" y="208" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">4</text>
     <use href="#icon-repo" x="58" y="228" width="20" height="20"/>
     <text x="94" y="246" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700">Contributed to (last year):</text>
-    <text x="374" y="246" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">9</text>
+    <text x="374" y="246" fill="#2dd4bf" font-family="JetBrains Mono, Consolas, monospace" font-size="18" font-weight="800" text-anchor="end">10</text>
   </g>
 
   <g transform="translate(510 96)">
@@ -66,27 +66,27 @@
     <rect x="754" y="112" width="430" height="14" rx="7"/>
   </clipPath>
   <g clip-path="url(#barClip)">
-    <rect x="754" y="112" width="185" height="14" fill="#6e4a7e"/>
-    <rect x="939" y="112" width="91" height="14" fill="#ff4f2e"/>
-    <rect x="1030" y="112" width="34" height="14" fill="#3776ab"/>
-    <rect x="1064" y="112" width="24" height="14" fill="#5d87bf"/>
-    <rect x="1088" y="112" width="23" height="14" fill="#00add8"/>
-    <rect x="1111" y="112" width="73" height="14" fill="#1f2a44"/>
+    <rect x="754" y="112" width="171" height="14" fill="#6e4a7e"/>
+    <rect x="925" y="112" width="84" height="14" fill="#ff4f2e"/>
+    <rect x="1009" y="112" width="32" height="14" fill="#f34b7d"/>
+    <rect x="1041" y="112" width="31" height="14" fill="#3776ab"/>
+    <rect x="1072" y="112" width="22" height="14" fill="#5d87bf"/>
+    <rect x="1094" y="112" width="90" height="14" fill="#1f2a44"/>
   </g>
   <rect x="754" y="112" width="430" height="14" rx="7" fill="none" stroke="#22304e"/>
 
   <g>
     <circle cx="742" cy="155" r="8" fill="#6e4a7e"/>
-    <text x="760" y="160" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Elixir 43.00%</text>
+    <text x="760" y="160" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Elixir 39.80%</text>
     <circle cx="1004" cy="155" r="8" fill="#ff4f2e"/>
-    <text x="1022" y="160" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Mojo 21.20%</text>
-    <circle cx="742" cy="197" r="8" fill="#3776ab"/>
-    <text x="760" y="202" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Python 7.80%</text>
-    <circle cx="1004" cy="197" r="8" fill="#5d87bf"/>
-    <text x="1022" y="202" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">V 5.60%</text>
-    <circle cx="742" cy="239" r="8" fill="#00add8"/>
-    <text x="760" y="244" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Go 5.30%</text>
+    <text x="1022" y="160" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Mojo 19.60%</text>
+    <circle cx="742" cy="197" r="8" fill="#f34b7d"/>
+    <text x="760" y="202" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">C++ 7.40%</text>
+    <circle cx="1004" cy="197" r="8" fill="#3776ab"/>
+    <text x="1022" y="202" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">Python 7.20%</text>
+    <circle cx="742" cy="239" r="8" fill="#5d87bf"/>
+    <text x="760" y="244" fill="#2dd4bf" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18">V 5.20%</text>
   </g>
 
-  <text x="1236" y="262" fill="#64748b" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12">AUTO 2026-06-25 04:21Z / TOP Elixir 43.0%</text>
+  <text x="1236" y="262" fill="#64748b" text-anchor="end" font-family="JetBrains Mono, Consolas, monospace" font-size="12">AUTO 2026-06-26 04:37Z / TOP Elixir 39.8%</text>
 </svg>

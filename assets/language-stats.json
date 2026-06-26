@@ -1,14 +1,16 @@
 {
-  "generated_at": "2026-06-25 04:21 UTC",
-  "repo_count": 8,
-  "total_bytes": 596618,
+  "generated_at": "2026-06-26 04:37 UTC",
+  "repo_count": 9,
+  "total_bytes": 644034,
   "baseline": false,
-  "new_languages": [],
+  "new_languages": [
+    "C++"
+  ],
   "languages": [
     {
       "name": "Elixir",
       "bytes": 256281,
-      "percent": 43.0,
+      "percent": 39.8,
       "repos": [
         "elixir-luv-v"
       ],
@@ -17,7 +19,7 @@
     {
       "name": "Mojo",
       "bytes": 126211,
-      "percent": 21.2,
+      "percent": 19.6,
       "repos": [
         "Lo",
         "mojo-data-structures-50"
@@ -25,9 +27,18 @@
       "color": "ff4f2e"
     },
     {
+      "name": "C++",
+      "bytes": 47416,
+      "percent": 7.4,
+      "repos": [
+        "win-liquid-glass"
+      ],
+      "color": "f34b7d"
+    },
+    {
       "name": "Python",
       "bytes": 46413,
-      "percent": 7.8,
+      "percent": 7.2,
       "repos": [
         "ds50-speedforge",
         "elixir-luv-v",
@@ -39,7 +50,7 @@
     {
       "name": "V",
       "bytes": 33562,
-      "percent": 5.6,
+      "percent": 5.2,
       "repos": [
         "ds50-speedforge"
       ],
@@ -48,7 +59,7 @@
     {
       "name": "Go",
       "bytes": 31472,
-      "percent": 5.3,
+      "percent": 4.9,
       "repos": [
         "ds50-speedforge"
       ],
@@ -57,7 +68,7 @@
     {
       "name": "PowerShell",
       "bytes": 28689,
-      "percent": 4.8,
+      "percent": 4.5,
       "repos": [
         "ds50-speedforge",
         "elixir-luv-v",
@@ -69,7 +80,7 @@
     {
       "name": "TypeScript",
       "bytes": 24240,
-      "percent": 4.1,
+      "percent": 3.8,
       "repos": [
         "pixel-cat-web",
         "rk-euler-teaching-site"
@@ -79,7 +90,7 @@
     {
       "name": "Julia",
       "bytes": 14977,
-      "percent": 2.5,
+      "percent": 2.3,
       "repos": [
         "ds50-speedforge",
         "rk-euler-teaching-site"
@@ -89,7 +100,7 @@
     {
       "name": "Shell",
       "bytes": 8399,
-      "percent": 1.4,
+      "percent": 1.3,
       "repos": [
         "Lo",
         "elixir-luv-v",
@@ -100,7 +111,7 @@
     {
       "name": "CSS",
       "bytes": 8378,
-      "percent": 1.4,
+      "percent": 1.3,
       "repos": [
         "pixel-cat-web",
         "rk-euler-teaching-site"
@@ -110,7 +121,7 @@
     {
       "name": "Pony",
       "bytes": 7952,
-      "percent": 1.3,
+      "percent": 1.2,
       "repos": [
         "pony-fin-terminal"
       ],
@@ -119,7 +130,7 @@
     {
       "name": "C",
       "bytes": 7572,
-      "percent": 1.3,
+      "percent": 1.2,
       "repos": [
         "Lo"
       ],
